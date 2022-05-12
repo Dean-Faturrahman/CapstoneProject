@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
 import com.dicoding.capstones.databinding.ActivityLoginBinding
+import kotlinx.android.synthetic.main.nav.*
 
 
 class LoginActivity : AppCompatActivity() {

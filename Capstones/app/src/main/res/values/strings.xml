@@ -35,4 +35,14 @@
     <string name="rekomendasi_guru">Rekomendasi Guru</string>
     <string name="sub_rekomen">Konsultasikan Tugas anda dengan pengajar</string>
     <string name="username">nama</string>
+    <string name="nama_dummy">Fasrhan Maulana Malik</string>
+    <string name="gender_dummy">Perempuan</string>
+    <string name="age_dummy">20 Tahun</string>
+    <string name="keluar">Keluar</string>
+    <string name="versi_aplikasi_0_1">Versi Aplikasi 0.1</string>
+    <string name="edit_your_profile">Edit your Profile</string>
+    <string name="nomor">087719473487</string>
+    <string name="email_dumy">Fasrhanmaulana@teachNGo.ac.id</string>
+    <string name="pelajar_sma">Pelajar SMA</string>
+    <string name="icon">icon</string>
 </resources>

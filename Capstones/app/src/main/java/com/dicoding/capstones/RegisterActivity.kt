@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
+import com.dicoding.capstones.databinding.ActivityProfileBinding
 import com.dicoding.capstones.databinding.ActivityRegisterBinding
 
 class RegisterActivity : AppCompatActivity() {
@@ -15,7 +16,7 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupView()
+//        setupView()
         setupAction()
     }
 
