@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="234dp"
+            android:layout_height="69dp"
+            android:layout_marginTop="100dp"
+            android:src="@drawable/logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/pbold"
+            android:text="@string/form_pendaftaran"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:fontFamily="@font/pmedium"
+            android:text="Isi Form pendaftaran untuk mulai belajar"
+            android:textColor="@color/title"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/pmedium"
+            android:text="@string/nama_lengkap"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <EditText
+            android:id="@+id/inputNama"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/shape_edittext"
+            android:fontFamily="@font/pregular"
+            android:hint="@string/nama_lengkap_kamu"
+            android:inputType="text"
+            android:drawablePadding="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="20dp"
+            android:drawableStart="@drawable/person_icon"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+        <TextView
+            android:id="@+id/txtemail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/pmedium"
+            android:text="@string/email"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/inputNama"
+            app:layout_constraintTop_toBottomOf="@+id/inputNama" />
+
+        <EditText
+            android:id="@+id/inputEmail"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/shape_edittext"
+            android:drawableStart="@drawable/email_icon"
+            android:drawablePadding="16dp"
+            android:fontFamily="@font/pregular"
+            android:hint="@string/masukan_email_kamu"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="16dp"
+            android:paddingRight="20dp"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtemail" />
+
+        <TextView
+            android:id="@+id/txtPass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/pmedium"
+            android:text="@string/password"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/inputEmail"
+            app:layout_constraintTop_toBottomOf="@+id/inputEmail" />
+
+        <EditText
+            android:id="@+id/inputPassword"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/shape_edittext"
+            android:drawableStart="@drawable/pass_icon"
+            android:fontFamily="@font/pregular"
+            android:hint="@string/masukan_password_kamu"
+            android:inputType="textPassword"
+            android:drawablePadding="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="20dp"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtPass" />
+
+        <TextView
+            android:id="@+id/txtDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/pmedium"
+            android:text="@string/date"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/inputPassword"
+            app:layout_constraintTop_toBottomOf="@+id/inputPassword" />
+
+        <EditText
+            android:id="@+id/inputDate"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/shape_edittext"
+            android:drawableStart="@drawable/date_icon"
+            android:fontFamily="@font/pregular"
+            android:hint="@string/masukan_tanggal_lahir"
+            android:inputType="datetime"
+            android:drawablePadding="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="20dp"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtDate" />
+
+        <TextView
+            android:id="@+id/txtGender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/pmedium"
+            android:text="@string/gender"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/inputDate"
+            app:layout_constraintTop_toBottomOf="@+id/inputDate" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/txtGender"
+            app:layout_constraintTop_toBottomOf="@+id/txtGender">
+
+            <RadioButton
+                android:id="@+id/radio_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/laki_laki" />
+
+            <RadioButton
+                android:id="@+id/radio_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Perempuan" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/txtPendidikan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/pmedium"
+            android:text="@string/pendidikan"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/radioGroup"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputPendidikan"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:drawableStart="@drawable/pendidikan_icon"
+            android:fontFamily="@font/pregular"
+            android:hint="Pendidikan terakhir"
+            android:inputType="textPassword"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtPendidikan"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
+
+            <AutoCompleteTextView
+                android:id="@+id/dropdown"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/edittext"
+                android:drawableStart="@drawable/pendidikan_icon"
+                android:drawablePadding="16dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/txtNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/pmedium"
+            android:text="@string/nomor_telepon"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/inputPendidikan"
+            app:layout_constraintTop_toBottomOf="@+id/inputPendidikan" />
+
+        <EditText
+            android:id="@+id/inputNumber"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/shape_edittext"
+            android:drawableStart="@drawable/call_icon"
+            android:drawablePadding="16dp"
+            android:fontFamily="@font/pregular"
+            android:hint="@string/masukan_nomor_telepon"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="16dp"
+            android:paddingRight="20dp"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtNumber" />
+
+        <TextView
+            android:id="@+id/txtInterest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/pmedium"
+            android:text="@string/email"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/inputNumber"
+            app:layout_constraintTop_toBottomOf="@+id/inputNumber" />
+
+        <CheckBox
+            android:id="@+id/check_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pregular"
+            android:text="@string/matematika"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/txtInterest"
+            app:layout_constraintTop_toBottomOf="@+id/txtInterest" />
+
+        <CheckBox
+            android:id="@+id/check_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Biologi"
+            android:fontFamily="@font/pregular"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/check_one"
+            app:layout_constraintTop_toBottomOf="@+id/check_one"/>
+
+        <CheckBox
+            android:id="@+id/check_three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fisika"
+            android:fontFamily="@font/pregular"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/check_two"
+            app:layout_constraintTop_toBottomOf="@+id/check_two"/>
+
+        <CheckBox
+            android:id="@+id/check_Four"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/kimia"
+            android:fontFamily="@font/pregular"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/check_three"
+            app:layout_constraintTop_toBottomOf="@+id/check_three"/>
+
+        <CheckBox
+            android:id="@+id/check_Five"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:fontFamily="@font/pregular"
+            android:text="@string/akuntan"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/check_one"
+            app:layout_constraintTop_toTopOf="@+id/check_one" />
+
+        <CheckBox
+            android:id="@+id/check_six"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pregular"
+            android:text="@string/inggris"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/check_Five"
+            app:layout_constraintTop_toBottomOf="@+id/check_Five" />
+
+        <CheckBox
+            android:id="@+id/check_seven"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pregular"
+            android:text="@string/indo"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/check_six"
+            app:layout_constraintTop_toBottomOf="@+id/check_six" />
+
+        <CheckBox
+            android:id="@+id/check_eight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pregular"
+            android:text="@string/seni"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/check_seven"
+            app:layout_constraintTop_toBottomOf="@+id/check_seven" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:alpha="1"
+            android:background="@drawable/shape_button"
+            android:fontFamily="@font/pmedium"
+            android:text="@string/btRegis"
+            android:textSize="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/check_Four" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/pregular"
+            android:text="Sudah punya akun?"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/button"
+            app:layout_constraintHorizontal_bias="0.424"
+            app:layout_constraintStart_toStartOf="@+id/button"
+            app:layout_constraintTop_toBottomOf="@+id/button" />
+
+        <TextView
+            android:id="@+id/daftar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pregular"
+            android:text="Login disini"
+            android:textColor="@color/purple_200"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/button"
+            app:layout_constraintStart_toEndOf="@+id/textView4"
+            app:layout_constraintTop_toTopOf="@+id/textView4" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
