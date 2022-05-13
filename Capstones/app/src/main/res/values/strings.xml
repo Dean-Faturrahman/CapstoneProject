@@ -45,4 +45,18 @@
     <string name="email_dumy">Fasrhanmaulana@teachNGo.ac.id</string>
     <string name="pelajar_sma">Pelajar SMA</string>
     <string name="icon">icon</string>
+    <string name="logo">logo</string>
+    <string name="belum_punya_akun">Belum punya akun?</string>
+    <string name="daftar_disini">Daftar disini</string>
+    <string name="form_pendaftaran_pengajar">Form Pendaftaran Pengajar</string>
+    <string name="txt_Link">Sebelum isi formulir pastikan anda telah mengikuti ujian pada link berikut https://www.gform.com</string>
+    <string name="start">*</string>
+    <string name="nilai">Masukan Nilai Anda</string>
+    <string name="txt_hasilUjian">"Masukan Hasil Ujian "</string>
+    <string name="minat">Minat Mengajar</string>
+    <string name="tahun">Tahun Mengajar</string>
+    <string name="input_tahun">Contoh: 4 Tahun</string>
+    <string name="upload">"Upload Identitas "</string>
+    <string name="input_indentitas">Pilih File</string>
+    <string name="btUpload">Upgrade</string>
 </resources>

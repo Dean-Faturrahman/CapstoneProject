@@ -6,14 +6,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
+import com.dicoding.capstones.databinding.ActivityFormUpgradeBinding
 import com.dicoding.capstones.databinding.ActivityProfileBinding
 import com.dicoding.capstones.databinding.ActivityRegisterBinding
+import kotlinx.android.synthetic.main.nav.*
 
 class RegisterActivity : AppCompatActivity() {
-    private lateinit var binding : ActivityRegisterBinding
+    private lateinit var binding : ActivityFormUpgradeBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityRegisterBinding.inflate(layoutInflater)
+        binding = ActivityFormUpgradeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
 //        setupView()
