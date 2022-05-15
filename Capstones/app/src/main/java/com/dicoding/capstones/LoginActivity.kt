@@ -35,6 +35,11 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun setupAction(){
+        binding.button.setOnClickListener {
+            val intent = Intent(this@LoginActivity, HomeActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.daftar.setOnClickListener {
             val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
             startActivity(intent)

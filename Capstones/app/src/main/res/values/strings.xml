@@ -59,4 +59,24 @@
     <string name="upload">"Upload Identitas "</string>
     <string name="input_indentitas">Pilih File</string>
     <string name="btUpload">Upgrade</string>
+
+    <string-array name="data_name">
+        <item>Matematika</item>
+        <item>Biologi</item>
+        <item>Bahasa Inggris</item>
+        <item>Fisika</item>
+        <item>Akuntasi</item>
+        <item>Kimia</item>
+        <item>Bahasa Indonesia</item>
+    </string-array>
+
+    <string-array name="data_photo">
+        <item>@drawable/matematika</item>
+        <item>@drawable/biologi</item>
+        <item>@drawable/eng</item>
+        <item>@drawable/atom</item>
+        <item>@drawable/akuntan</item>
+        <item>@drawable/kimia</item>
+        <item>@drawable/indonesia</item>
+    </string-array>
 </resources>
