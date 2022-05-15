@@ -2,11 +2,11 @@ package com.dicoding.capstones
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.capstones.adapter.itemhome.ListItemAdapter
-import com.dicoding.capstones.data.ItemHome
+import com.dicoding.capstones.adapter.itemhome.ListUserReviewAdapter
+import com.dicoding.capstones.data.ItemSubject
+import com.dicoding.capstones.data.UserReview
 import com.dicoding.capstones.databinding.ActivityHomeBinding
-import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
 
@@ -20,20 +20,36 @@ class HomeActivity : AppCompatActivity() {
         showRecyclerList()
     }
 
-    private val listHeroes: ArrayList<ItemHome>
+    private val listItemHome: ArrayList<ItemSubject>
     get() {
-        val dataName = resources.getStringArray(R.array.data_name)
-        val dataPhoto = resources.obtainTypedArray(R.array.data_photo)
-        val listItem = ArrayList<ItemHome>()
+        val dataName = resources.getStringArray(R.array.data_item_name)
+        val dataPhoto = resources.obtainTypedArray(R.array.data_item_photo)
+        val listItem = ArrayList<ItemSubject>()
         for (i in dataName.indices) {
-            val hero = ItemHome(dataPhoto.getResourceId(i, -1), dataName[i])
-            listItem.add(hero)
+            val itemHome = ItemSubject(dataPhoto.getResourceId(i, -1), dataName[i])
+            listItem.add(itemHome)
         }
         return listItem
     }
 
+    private val listItemReview: ArrayList<UserReview>
+        get() {
+            val dataName = resources.getStringArray(R.array.data_user_name)
+            val dataPhoto = resources.obtainTypedArray(R.array.data_user_photo)
+            val dataReview = resources.getStringArray(R.array.data_user_review)
+            val listItem = ArrayList<UserReview>()
+            for (i in dataName.indices) {
+                val itemReview = UserReview(dataPhoto.getResourceId(i, -1), dataName[i], dataReview[i])
+                listItem.add(itemReview)
+            }
+            return listItem
+        }
+
     private fun showRecyclerList() {
-        val listHeroAdapter = ListItemAdapter(listHeroes)
-        binding.rvItem.adapter = listHeroAdapter
+        val listItemHomeAdapter = ListItemAdapter(listItemHome)
+        binding.rvItem.adapter = listItemHomeAdapter
+
+        val listItemReviewAdapter = ListUserReviewAdapter(listItemReview)
+        binding.rvReview.adapter = listItemReviewAdapter
     }
 }

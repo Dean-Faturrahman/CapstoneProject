@@ -16,10 +16,10 @@
         android:layout_height="wrap_content"
         android:padding="8dp">
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <ImageView
             android:id="@+id/img_item_photo"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:maxHeight="500dp"
@@ -29,23 +29,16 @@
             tools:src="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/name_user"
+            android:id="@+id/name_subject"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="Chavez"
+            android:text="Matematika"
             android:textStyle="bold"
+            android:textSize="16sp"
+            card_view:layout_constraintBottom_toBottomOf="@+id/img_item_photo"
             card_view:layout_constraintStart_toEndOf="@+id/img_item_photo"
             card_view:layout_constraintTop_toTopOf="@+id/img_item_photo" />
-
-        <TextView
-            android:id="@+id/review_user"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Pengajarnya sangat friendly"
-            card_view:layout_constraintStart_toStartOf="@+id/name_user"
-            card_view:layout_constraintTop_toBottomOf="@+id/name_user" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
