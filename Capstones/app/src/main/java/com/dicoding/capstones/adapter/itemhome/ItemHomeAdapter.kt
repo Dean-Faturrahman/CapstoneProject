@@ -3,10 +3,11 @@ package com.dicoding.capstones.adapter.itemhome
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.dicoding.capstones.data.ItemHome
 import com.dicoding.capstones.data.ItemSubject
 import com.dicoding.capstones.databinding.ItemBinding
 
-class ListItemAdapter(private val listItemHome: ArrayList<ItemSubject>) : RecyclerView.Adapter<ListItemAdapter.ListViewHolder>() {
+class ListItemAdapter(private val listItemHome: ArrayList<ItemHome>) : RecyclerView.Adapter<ListItemAdapter.ListViewHolder>() {
     class ListViewHolder(var binding: ItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {

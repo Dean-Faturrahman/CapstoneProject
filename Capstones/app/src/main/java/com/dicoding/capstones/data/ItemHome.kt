@@ -1,6 +1,6 @@
 package com.dicoding.capstones.data
 
-data class ItemSubject (
+data class ItemHome (
     var photo: Int,
     var name: String
 )
