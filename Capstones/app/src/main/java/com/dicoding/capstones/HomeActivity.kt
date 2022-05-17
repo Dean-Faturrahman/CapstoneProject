@@ -1,12 +1,16 @@
 package com.dicoding.capstones
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import com.dicoding.capstones.adapter.itemhome.ListItemAdapter
 import com.dicoding.capstones.adapter.itemhome.ListUserReviewAdapter
 import com.dicoding.capstones.data.ItemSubject
 import com.dicoding.capstones.data.UserReview
 import com.dicoding.capstones.databinding.ActivityHomeBinding
+import kotlinx.android.synthetic.main.nav.*
 
 class HomeActivity : AppCompatActivity() {
 
@@ -16,8 +20,30 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        nav()
         showRecyclerList()
+    }
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.home -> {
+                val i = Intent(this, HomeActivity::class.java)
+                startActivity(i)
+                return true
+            }
+            R.id.search -> {
+                val i = Intent(this, SearchActivity::class.java)
+                startActivity(i)
+                return true
+            }
+            else -> return true
+        }
+    }
+
+    private fun nav(){
+        bottomNavView.background = null
+        bottomNavView.menu.getItem(2).isEnabled = false
     }
 
     private val listItemHome: ArrayList<ItemSubject>

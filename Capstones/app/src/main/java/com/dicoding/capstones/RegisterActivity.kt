@@ -12,13 +12,13 @@ import com.dicoding.capstones.databinding.ActivityRegisterBinding
 import kotlinx.android.synthetic.main.nav.*
 
 class RegisterActivity : AppCompatActivity() {
-    private lateinit var binding : ActivityFormUpgradeBinding
+    private lateinit var binding : ActivityRegisterBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityFormUpgradeBinding.inflate(layoutInflater)
+        binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        setupView()
+        setupView()
         setupAction()
     }
 
@@ -36,10 +36,10 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun setupAction(){
-//        binding.daftar.setOnClickListener {
-//            val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
-//            startActivity(intent)
-//        }
+        binding.daftar.setOnClickListener {
+            val intent = Intent(this@RegisterActivity, RegisterActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 }

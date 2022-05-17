@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Capstones">
         <activity
+            android:name=".SearchActivity"
+            android:exported="false" />
+        <activity
             android:name=".SubjectActivity"
             android:exported="false" />
         <activity

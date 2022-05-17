@@ -59,6 +59,6 @@
         tools:listitem="@layout/item_list_guru">
     </androidx.recyclerview.widget.RecyclerView>
 
-
+    <include layout="@layout/nav"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

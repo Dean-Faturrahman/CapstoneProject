@@ -19,9 +19,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setupView()
         setupAction()
-//        bottomNavView.background = null
-//        bottomNavView.menu.getItem(2).isEnabled = false
-
     }
     private fun setupView() {
         @Suppress("DEPRECATION")
