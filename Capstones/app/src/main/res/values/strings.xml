@@ -68,6 +68,7 @@
         <item>Akuntasi</item>
         <item>Kimia</item>
         <item>Bahasa Indonesia</item>
+        <item>Lainnya</item>
     </string-array>
 
     <string-array name="data_item_photo">
@@ -78,6 +79,7 @@
         <item>@drawable/akuntan</item>
         <item>@drawable/kimia</item>
         <item>@drawable/indonesia</item>
+        <item>@drawable/others</item>
     </string-array>
 
     <string-array name="data_user_photo">
@@ -97,9 +99,11 @@
         <item>Sangat membantu dalam mengerjakan tugas</item>
         <item>Materinya mudah dipahami</item>
     </string-array>
+
     <string name="title_activity_home2">HomeActivity2</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_profile">Profile</string>
+    <string name="profile_image_desc">Profile Image</string>
 </resources>

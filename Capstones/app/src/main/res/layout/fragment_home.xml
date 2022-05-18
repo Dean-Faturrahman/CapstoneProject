@@ -27,12 +27,13 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                tools:src="@tools:sample/avatars" />
+                tools:src="@tools:sample/avatars"
+                android:contentDescription="@string/profile_image_desc" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="22dp"
+                android:layout_marginStart="22dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -58,6 +59,7 @@
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="35dp"
+                        android:backgroundTint="@color/gold"
                         android:text="Upgrade"
                         android:textSize="10sp" />
 

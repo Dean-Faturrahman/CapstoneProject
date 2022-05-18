@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.dicoding.capstones.R
 import com.dicoding.capstones.adapter.itemhome.ListItemAdapter
 import com.dicoding.capstones.adapter.itemhome.ListUserReviewAdapter
+import com.dicoding.capstones.data.ItemHome
 import com.dicoding.capstones.data.ItemSubject
 import com.dicoding.capstones.data.UserReview
 import com.dicoding.capstones.databinding.FragmentHomeBinding
@@ -41,13 +42,13 @@ class HomeFragment : Fragment() {
         return root
     }
 
-    private val listItemHome: ArrayList<ItemSubject>
+    private val listItemHome: ArrayList<ItemHome>
         get() {
             val dataName = resources.getStringArray(R.array.data_item_name)
             val dataPhoto = resources.obtainTypedArray(R.array.data_item_photo)
-            val listItem = ArrayList<ItemSubject>()
+            val listItem = ArrayList<ItemHome>()
             for (i in dataName.indices) {
-                val itemHome = ItemSubject(dataPhoto.getResourceId(i, -1), dataName[i])
+                val itemHome = ItemHome(dataPhoto.getResourceId(i, -1), dataName[i])
                 listItem.add(itemHome)
             }
             return listItem
@@ -70,7 +71,7 @@ class HomeFragment : Fragment() {
     private fun showRecyclerList() {
         val listItemHomeAdapter = ListItemAdapter(listItemHome)
         binding.rvItem.adapter = listItemHomeAdapter
-//
+
         val listItemReviewAdapter = ListUserReviewAdapter(listItemReview)
         binding.rvReview.adapter = listItemReviewAdapter
     }
