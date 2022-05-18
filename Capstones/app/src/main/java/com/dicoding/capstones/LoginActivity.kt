@@ -36,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun setupAction(){
         binding.button.setOnClickListener {
-            val intent = Intent(this@LoginActivity, HomeActivity::class.java)
+            val intent = Intent(this@LoginActivity, HomeActivity2::class.java)
             startActivity(intent)
         }
 

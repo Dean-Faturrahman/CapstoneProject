@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/home"
+        android:id="@+id/nav_home"
         android:title="Home"
         android:icon="@drawable/ic_home"/>
     <item
-        android:id="@+id/search"
+        android:id="@+id/nav_search"
         android:title="search"
         android:icon="@drawable/ic_search"/>
     <item
-        android:id="@+id/placeholder"
-        android:title=""/>
-    <item
-        android:id="@+id/chat"
+        android:id="@+id/nav_chat"
         android:title="Chat"
         android:icon="@drawable/ic_chat"/>
     <item
-        android:id="@+id/person"
-        android:title="Person"
+        android:id="@+id/nav_profile"
+        android:title="Profile"
         android:icon="@drawable/ic_person"/>
 </menu>

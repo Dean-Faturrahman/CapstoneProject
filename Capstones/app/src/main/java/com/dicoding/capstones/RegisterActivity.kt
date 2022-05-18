@@ -6,8 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
-import com.dicoding.capstones.databinding.ActivityFormUpgradeBinding
-import com.dicoding.capstones.databinding.ActivityProfileBinding
 import com.dicoding.capstones.databinding.ActivityRegisterBinding
 import kotlinx.android.synthetic.main.nav.*
 

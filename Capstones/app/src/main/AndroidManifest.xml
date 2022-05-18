@@ -10,19 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Capstones">
         <activity
-            android:name=".SearchActivity"
-            android:exported="false" />
+            android:name=".HomeActivity2"
+            android:exported="false"
+            android:label="@string/title_activity_home2" />
         <activity
             android:name=".SubjectActivity"
             android:exported="false" />
         <activity
             android:name=".FormUpgradeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ProfileActivity"
-            android:exported="false" />
-        <activity
-            android:name=".HomeActivity"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"
