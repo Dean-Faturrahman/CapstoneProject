@@ -17,5 +17,8 @@
     <color name="h1">#272343</color>
     <color name="red">#E34A4A</color>
     <color name="cardForm">#19E34A4A</color>
+    <color name="chatting">#AEAEAE</color>
+    <color name="editText_chatting">#D6D0D0</color>
+
 
 </resources>
