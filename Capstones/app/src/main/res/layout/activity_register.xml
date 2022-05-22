@@ -139,6 +139,37 @@
             app:layout_constraintTop_toBottomOf="@+id/txtPass" />
 
         <TextView
+            android:id="@+id/txtPassKonfir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/pmedium"
+            android:text="@string/passwordconf"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/inputPassword"
+            app:layout_constraintTop_toBottomOf="@+id/inputPassword" />
+
+        <EditText
+            android:id="@+id/inputPassConf"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/shape_edittext"
+            android:drawableStart="@drawable/pass_icon"
+            android:fontFamily="@font/pregular"
+            android:hint="@string/konfirmasiPass"
+            android:inputType="textPassword"
+            android:drawablePadding="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="20dp"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtPassKonfir" />
+
+        <TextView
             android:id="@+id/txtDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -147,8 +178,8 @@
             android:text="@string/date"
             android:textColor="@color/black"
             android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/inputPassword"
-            app:layout_constraintTop_toBottomOf="@+id/inputPassword" />
+            app:layout_constraintStart_toStartOf="@+id/inputPassConf"
+            app:layout_constraintTop_toBottomOf="@+id/inputPassConf" />
 
         <EditText
             android:id="@+id/inputDate"
@@ -203,53 +234,15 @@
         </RadioGroup>
 
         <TextView
-            android:id="@+id/txtPendidikan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/pmedium"
-            android:text="@string/pendidikan"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/radioGroup"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inputPendidikan"
-            android:layout_width="0dp"
-            android:layout_height="55dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:drawableStart="@drawable/pendidikan_icon"
-            android:fontFamily="@font/pregular"
-            android:hint="Pendidikan terakhir"
-            android:inputType="textPassword"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtPendidikan"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
-
-            <AutoCompleteTextView
-                android:id="@+id/dropdown"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/edittext"
-                android:drawableStart="@drawable/pendidikan_icon"
-                android:drawablePadding="16dp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
             android:id="@+id/txtNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:fontFamily="@font/pmedium"
             android:text="@string/nomor_telepon"
             android:textColor="@color/black"
             android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/inputPendidikan"
-            app:layout_constraintTop_toBottomOf="@+id/inputPendidikan" />
+            app:layout_constraintStart_toStartOf="@+id/txtGender"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
         <EditText
             android:id="@+id/inputNumber"
@@ -276,7 +269,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/pmedium"
-            android:text="@string/email"
+            android:text="@string/peminatan"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/inputNumber"

@@ -22,12 +22,14 @@
         <Constraint
             android:id="@+id/button"
             motion:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="328dp"
+            android:layout_width="0dp"
             android:layout_height="45dp"
             android:layout_marginBottom="32dp"
             motion:layout_constraintBottom_toTopOf="@+id/menu2"
             android:alpha="0"
-            motion:layout_constraintStart_toStartOf="parent" />
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp" />
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
