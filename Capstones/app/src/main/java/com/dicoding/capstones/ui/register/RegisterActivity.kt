@@ -1,23 +1,32 @@
-package com.dicoding.capstones
-import io.reactivex.functions.Function3
+package com.dicoding.capstones.ui.register
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
+import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.dicoding.capstones.R
+import com.dicoding.capstones.data.UserLoginModel
+import com.dicoding.capstones.data.UserRegisterModel
 import com.dicoding.capstones.databinding.ActivityRegisterBinding
+import com.dicoding.capstones.ui.login.LoginActivity
+import com.dicoding.capstones.ui.login.LoginViewModel
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.Observable
 import io.reactivex.functions.Function4
-import kotlinx.android.synthetic.main.nav.*
+import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding : ActivityRegisterBinding
+    private val registerViewModel by viewModels<RegisterViewModel>()
 
     @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,13 +34,16 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        vadidationForm()
+        validationForm()
         setupView()
         setupAction()
+        datePicker()
+        registerObserver()
+        errorObserver()
     }
 
     @SuppressLint("CheckResult")
-    private fun vadidationForm(){
+    private fun validationForm(){
         val emailStream = RxTextView.textChanges(binding.inputEmail)
             .skipInitialValue()
             .map { email ->
@@ -121,10 +133,78 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun setupAction(){
-        binding.daftar.setOnClickListener {
-            val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
-            startActivity(intent)
+        binding.button.setOnClickListener {
+            registerService()
         }
 
+        binding.tvToLogin.setOnClickListener {
+            toLogin()
+        }
+    }
+
+    private fun datePicker() {
+        val today = Calendar.getInstance()
+        binding.datePicker.init(today.get(Calendar.YEAR), today.get(Calendar.MONTH),
+            today.get(Calendar.DAY_OF_MONTH)
+        ) { _, year, month, day ->
+            val month = month + 1
+            val msg = "$year-$month-$day"
+            binding.tvDate.text = msg
+        }
+    }
+
+    private fun setRegisterData(): UserRegisterModel {
+        val gender = when (binding.radioGroup.checkedRadioButtonId) {
+            binding.radio1.id -> "Male"
+            binding.radio2.id -> "Female"
+            else -> ""
+        }
+        return UserRegisterModel(
+            binding.inputEmail.text.toString(),
+            binding.inputPassConf.text.toString(),
+            binding.inputNama.text.toString(),
+            binding.inputNumber.text.toString(),
+            binding.tvDate.text.toString(),
+            gender
+        )
+    }
+
+    private fun registerService() {
+        registerViewModel.register(
+            setRegisterData().userEmail.toString(),
+            setRegisterData().userPassword.toString(),
+            setRegisterData().userName.toString(),
+            setRegisterData().userPhone.toString(),
+            setRegisterData().userDob.toString(),
+            setRegisterData().userGender.toString(),
+        )
+        registerViewModel.isLoading.observe(this) {
+            showLoading(it)
+        }
+    }
+
+    private fun registerObserver() {
+        registerViewModel.register.observe(this) {
+            if (it.status == 1) {
+                Toast.makeText(this@RegisterActivity, it.message, Toast.LENGTH_SHORT).show()
+                toLogin()
+            } else {
+                Toast.makeText(this@RegisterActivity, it.message, Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun errorObserver() {
+        registerViewModel.errorMessage.observe(this) {
+            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun toLogin() {
+        finish()
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 }

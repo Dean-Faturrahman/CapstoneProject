@@ -1,14 +1,16 @@
 package com.dicoding.capstones
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.capstones.databinding.ActivityMainBinding
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.nav.*
+import com.dicoding.capstones.ui.login.LoginActivity
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -19,6 +21,19 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setupView()
         setupAction()
+
+        val pref = getSharedPreferences("ActivityPREF", Context.MODE_PRIVATE)
+        if (pref.getBoolean("activity_executed", false)) {
+            val intent = Intent(this@MainActivity, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+//        else {
+//            setupAction()
+//            val ed: SharedPreferences.Editor = pref.edit()
+//            ed.putBoolean("activity_executed", true)
+//            ed.apply()
+//        }
     }
     private fun setupView() {
         @Suppress("DEPRECATION")
@@ -37,8 +52,7 @@ class MainActivity : AppCompatActivity() {
         binding.button.setOnClickListener {
             val intent = Intent(this@MainActivity, LoginActivity::class.java)
             startActivity(intent)
+            finish()
         }
-
     }
-
 }

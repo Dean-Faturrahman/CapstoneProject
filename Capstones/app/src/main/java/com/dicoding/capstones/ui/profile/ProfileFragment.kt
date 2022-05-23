@@ -1,13 +1,18 @@
 package com.dicoding.capstones.ui.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.dicoding.capstones.databinding.FragmentProfileBinding
+import com.dicoding.capstones.helper.PrefHelper
+import com.dicoding.capstones.ui.login.LoginActivity
 
 class ProfileFragment : Fragment() {
 
@@ -16,6 +21,7 @@ class ProfileFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+    private lateinit var sharedPref: PrefHelper
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,6 +33,9 @@ class ProfileFragment : Fragment() {
 
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        sharedPref = PrefHelper(requireContext())
+
+        logout()
 
         return root
     }
@@ -34,5 +43,15 @@ class ProfileFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun logout() {
+        binding.tvLogout.setOnClickListener {
+            sharedPref.clear()
+            Toast.makeText(requireContext(), "Logout Success", Toast.LENGTH_SHORT).show()
+            val toLogin = Intent(requireContext(), LoginActivity::class.java)
+            startActivity(toLogin)
+            activity?.finish()
+        }
     }
 }
