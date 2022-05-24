@@ -21,8 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:divider="?android:dividerHorizontal"
-            android:orientation="horizontal"
-            android:showDividers="middle">
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/image_user"

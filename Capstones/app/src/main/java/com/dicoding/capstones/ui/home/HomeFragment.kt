@@ -1,6 +1,7 @@
 package com.dicoding.capstones.ui.home
 
 import android.content.Intent
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,12 +14,11 @@ import com.dicoding.capstones.R
 import com.dicoding.capstones.adapter.itemhome.ListItemAdapter
 import com.dicoding.capstones.adapter.itemhome.ListUserReviewAdapter
 import com.dicoding.capstones.data.ItemHome
-import com.dicoding.capstones.data.UserLoginModel
 import com.dicoding.capstones.data.UserReview
 import com.dicoding.capstones.databinding.FragmentHomeBinding
 import com.dicoding.capstones.helper.Const
 import com.dicoding.capstones.helper.PrefHelper
-import com.dicoding.capstones.ui.login.LoginActivity
+import com.dicoding.capstones.ui.classlist.ClassListActivity
 
 class HomeFragment : Fragment() {
 
@@ -40,6 +40,7 @@ class HomeFragment : Fragment() {
         return root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val sharedPref = PrefHelper(requireActivity());
@@ -53,7 +54,7 @@ class HomeFragment : Fragment() {
             Glide.with(requireContext())
                 .load(it[0].userPhoto)
                 .into(binding.imageUser)
-            binding.tvUserName.text = it[0].userName
+            binding.tvUserName.text = getString(R.string.greetings) + it[0].userName
             sharedPref.put(Const.PREF_USERID, it[0].userId)
             binding.btnRole.text = it[0].userRole
             if (it[0].userRole == "Teacher") {
@@ -90,14 +91,24 @@ class HomeFragment : Fragment() {
     private fun showRecyclerList() {
         val listItemHomeAdapter = ListItemAdapter(listItemHome)
         binding.rvItem.adapter = listItemHomeAdapter
+        listItemHomeAdapter.setOnItemClickCallback(object : ListItemAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: ItemHome?) {
+                toClass(data?.name)
+            }
+        })
 
         val listItemReviewAdapter = ListUserReviewAdapter(listItemReview)
         binding.rvReview.adapter = listItemReviewAdapter
+    }
+
+    private fun toClass(data: String?) {
+        val toClass = Intent(requireActivity(), ClassListActivity::class.java)
+        toClass.putExtra(ClassListActivity.EXTRA_SUBJECT, data)
+        startActivity(toClass)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 }

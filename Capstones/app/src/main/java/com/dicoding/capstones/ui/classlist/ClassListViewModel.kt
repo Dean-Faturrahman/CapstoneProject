@@ -1,4 +1,4 @@
-package com.dicoding.capstones.ui.profile
+package com.dicoding.capstones.ui.classlist
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -9,10 +9,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ProfileViewModel : ViewModel() {
-
-    private val _profile = MutableLiveData<List<ProfileDataItem>>()
-    val profile: LiveData<List<ProfileDataItem>> = _profile
+class ClassListViewModel : ViewModel() {
+    private val _classlist = MutableLiveData<List<ClassList>>()
+    val classlist: LiveData<List<ClassList>> = _classlist
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
@@ -20,20 +19,20 @@ class ProfileViewModel : ViewModel() {
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> = _errorMessage
 
-    fun getProfileData(userId: String?) {
+    fun getClassList(subjectName: String?) {
         _isLoading.value = true
-        val client = ApiConfig.getApiService().profile(userId)
-        client.enqueue(object : Callback<ProfileResponse> {
+        val client = ApiConfig.getApiService().getClass(subjectName)
+        client.enqueue(object : Callback<ClassResponse> {
 
-            override fun onResponse(call: Call<ProfileResponse>, response: Response<ProfileResponse>) {
+            override fun onResponse(call: Call<ClassResponse>, response: Response<ClassResponse>) {
                 _isLoading.value = false
                 if (response.isSuccessful) {
-                    _profile.value = response.body()?.data
-                    Log.e(TAG, _profile.value.toString())
+                    _classlist.value = response.body()?.data
+                    Log.e(TAG, _classlist.value.toString())
                 }
             }
 
-            override fun onFailure(call: Call<ProfileResponse>, t: Throwable) {
+            override fun onFailure(call: Call<ClassResponse>, t: Throwable) {
                 _isLoading.value = false
                 _errorMessage.value = t.message
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
@@ -42,6 +41,6 @@ class ProfileViewModel : ViewModel() {
     }
 
     companion object {
-        private const val TAG = "profileViewModel"
+        private const val TAG = "HomeViewModel"
     }
 }

@@ -127,4 +127,6 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="not_phone">Masukan nomor yang aktif</string>
     <string name="validate_name">Nama harus diisi</string>
+    <string name="greetings">Hi, </string>
+    <string name="yearsOld"> Tahun</string>
 </resources>

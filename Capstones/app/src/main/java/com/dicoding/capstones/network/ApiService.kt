@@ -31,6 +31,12 @@ interface ApiService {
     ): Call<HomeResponse>
 
     @FormUrlEncoded
+    @POST("class.php")
+    fun getClass(
+        @Field("subject_name") subjectName: String?
+    ): Call<ClassResponse>
+
+    @FormUrlEncoded
     @POST("profile.php")
     fun profile(
         @Field("userid") userId: String?
