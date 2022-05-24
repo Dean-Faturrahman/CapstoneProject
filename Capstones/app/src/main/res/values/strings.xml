@@ -114,4 +114,6 @@
     <string name="peminatan">Peminatan</string>
     <string name="konfirmasiPass">Masukan Ulang Password</string>
     <string name="passwordconf">Konfirmasi Password</string>
+    <string name="informasi">Informasi</string>
+    <string name="pengajar">Pengajar</string>
 </resources>
