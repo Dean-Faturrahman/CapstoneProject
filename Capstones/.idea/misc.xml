@@ -28,15 +28,17 @@
         <entry key="..\:/Android Intermediate/Capstones/app/src/main/res/mipmap-anydpi-v26/email_icon_round.xml" value="0.1995" />
         <entry key="..\:/CapstoneProject/Capstones/app/src/main/res/drawable-mdpi/shape_buttongold.xml" value="0.145" />
         <entry key="..\:/CapstoneProject/Capstones/app/src/main/res/drawable-mdpi/shape_edittext.xml" value="0.1455" />
-        <entry key="..\:/CapstoneProject/Capstones/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.236" />
+        <entry key="..\:/CapstoneProject/Capstones/app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.3415" />
         <entry key="..\:/CapstoneProject/Capstones/app/src/main/res/drawable/ic_camera.xml" value="0.1455" />
         <entry key="..\:/CapstoneProject/Capstones/app/src/main/res/drawable/send_icon.xml" value="0.145" />
         <entry key="..\:/CapstoneProject/Capstones/app/src/main/res/drawable/shape_chatting.xml" value="0.145" />
+        <entry key="..\:/CapstoneProject/Capstones/app/src/main/res/drawable/shape_edit.xml" value="0.3415" />
         <entry key="..\:/CapstoneProject/Capstones/app/src/main/res/drawable/shape_editext_cahtting.xml" value="0.1455" />
         <entry key="..\:/CapstoneProject/Capstones/app/src/main/res/layout/activity_chatting_room.xml" value="0.264" />
+        <entry key="..\:/CapstoneProject/Capstones/app/src/main/res/layout/activity_edit_profile.xml" value="0.1579995574242089" />
         <entry key="..\:/CapstoneProject/Capstones/app/src/main/res/layout/activity_form_upgrade.xml" value="0.2" />
         <entry key="..\:/CapstoneProject/Capstones/app/src/main/res/layout/activity_home.xml" value="0.176" />
-        <entry key="..\:/CapstoneProject/Capstones/app/src/main/res/layout/activity_home2.xml" value="0.22" />
+        <entry key="..\:/CapstoneProject/Capstones/app/src/main/res/layout/activity_home2.xml" value="0.16381578947368422" />
         <entry key="..\:/CapstoneProject/Capstones/app/src/main/res/layout/activity_login.xml" value="0.16381578947368422" />
         <entry key="..\:/CapstoneProject/Capstones/app/src/main/res/layout/activity_main.xml" value="0.11851092896174864" />
         <entry key="..\:/CapstoneProject/Capstones/app/src/main/res/layout/activity_profile.xml" value="0.16799999999999998" />
@@ -44,14 +46,10 @@
         <entry key="..\:/CapstoneProject/Capstones/app/src/main/res/layout/activity_search.xml" value="0.264" />
         <entry key="..\:/CapstoneProject/Capstones/app/src/main/res/layout/activity_subject.xml" value="0.16381578947368422" />
         <entry key="..\:/CapstoneProject/Capstones/app/src/main/res/layout/fragment_chat.xml" value="0.2" />
-<<<<<<< Updated upstream
+        <entry key="..\:/CapstoneProject/Capstones/app/src/main/res/layout/fragment_first.xml" value="0.11538461538461539" />
         <entry key="..\:/CapstoneProject/Capstones/app/src/main/res/layout/fragment_home.xml" value="0.16381578947368422" />
         <entry key="..\:/CapstoneProject/Capstones/app/src/main/res/layout/fragment_profile.xml" value="0.1" />
-=======
-        <entry key="..\:/CapstoneProject/Capstones/app/src/main/res/layout/fragment_home.xml" value="0.25" />
-        <entry key="..\:/CapstoneProject/Capstones/app/src/main/res/layout/fragment_profile.xml" value="0.33" />
-        <entry key="..\:/CapstoneProject/Capstones/app/src/main/res/layout/fragment_search.xml" value="0.2348684210526316" />
->>>>>>> Stashed changes
+        <entry key="..\:/CapstoneProject/Capstones/app/src/main/res/layout/fragment_second.xml" value="0.11538461538461539" />
         <entry key="..\:/CapstoneProject/Capstones/app/src/main/res/layout/item.xml" value="0.16381578947368422" />
         <entry key="..\:/CapstoneProject/Capstones/app/src/main/res/layout/item_list_guru.xml" value="0.264" />
         <entry key="..\:/CapstoneProject/Capstones/app/src/main/res/layout/item_message.xml" value="0.264" />

@@ -1,10 +1,8 @@
 package com.dicoding.capstones.ui.register
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.view.WindowInsets
@@ -14,11 +12,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.dicoding.capstones.R
-import com.dicoding.capstones.data.UserLoginModel
 import com.dicoding.capstones.data.UserRegisterModel
 import com.dicoding.capstones.databinding.ActivityRegisterBinding
-import com.dicoding.capstones.ui.login.LoginActivity
-import com.dicoding.capstones.ui.login.LoginViewModel
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.Observable
 import io.reactivex.functions.Function4

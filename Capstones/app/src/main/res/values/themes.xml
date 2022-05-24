@@ -27,4 +27,10 @@
     <style name="button">
         <item name="android:background">@color/red</item>
     </style>
+    <style name="Theme.Capstones.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.Capstones.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.Capstones.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
