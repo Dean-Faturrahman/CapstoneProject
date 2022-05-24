@@ -23,4 +23,10 @@ interface ApiService {
         @Field("dob") userDob: String,
         @Field("gender") userGender: String,
     ): Call<RegisterResponse>
+
+    @FormUrlEncoded
+    @POST("home.php")
+    fun homeUser(
+        @Field("email") userEmail: String?
+    ): Call<HomeResponse>
 }

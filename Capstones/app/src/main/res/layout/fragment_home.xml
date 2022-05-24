@@ -25,6 +25,7 @@
             android:showDividers="middle">
 
             <ImageView
+                android:id="@+id/image_user"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 tools:src="@tools:sample/avatars"
@@ -37,6 +38,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tv_user_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Hi Alesya Finandika"
@@ -50,14 +52,17 @@
                     android:orientation="horizontal">
 
                     <Button
+                        android:id="@+id/btn_role"
                         android:layout_width="wrap_content"
                         android:layout_height="35dp"
                         android:layout_marginEnd="8dp"
                         android:backgroundTint="@color/chatting"
-                        android:text="Siswa"
+                        android:clickable="false"
+                        android:text="Role"
                         android:textSize="10sp" />
 
                     <Button
+                        android:id="@+id/btn_upgrade"
                         android:layout_width="wrap_content"
                         android:layout_height="35dp"
                         android:backgroundTint="@color/gold"

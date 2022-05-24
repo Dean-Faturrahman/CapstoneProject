@@ -4,16 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.dicoding.capstones.R
 import com.dicoding.capstones.adapter.itemhome.ListItemAdapter
 import com.dicoding.capstones.adapter.itemhome.ListUserReviewAdapter
 import com.dicoding.capstones.data.ItemHome
-import com.dicoding.capstones.data.ItemSubject
+import com.dicoding.capstones.data.UserLoginModel
 import com.dicoding.capstones.data.UserReview
 import com.dicoding.capstones.databinding.FragmentHomeBinding
+import com.dicoding.capstones.helper.Const
+import com.dicoding.capstones.helper.PrefHelper
 
 class HomeFragment : Fragment() {
 
@@ -28,18 +31,33 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-//        val textView: TextView = binding.textHome
-//        homeViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
-//        }
         showRecyclerList()
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val sharedPref = PrefHelper(requireActivity());
+
+        val homeViewModel =
+            ViewModelProvider(this).get(HomeViewModel::class.java)
+
+        homeViewModel.getHomeData(sharedPref.getString(Const.PREF_USEREMAIL))
+
+        homeViewModel.home.observe(viewLifecycleOwner) {
+            Glide.with(requireContext())
+                .load(it[0].userPhoto)
+                .into(binding.imageUser)
+            binding.tvUserName.text = it[0].userName
+            sharedPref.put(Const.PREF_USERID, it[0].userId)
+            binding.btnRole.text = it[0].userRole
+            if (it[0].userRole == "Teacher") {
+                binding.btnUpgrade.isVisible = false
+            }
+        }
     }
 
     private val listItemHome: ArrayList<ItemHome>
@@ -66,7 +84,6 @@ class HomeFragment : Fragment() {
             }
             return listItem
         }
-
 
     private fun showRecyclerList() {
         val listItemHomeAdapter = ListItemAdapter(listItemHome)

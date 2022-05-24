@@ -134,6 +134,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun saveSession() {
         sharedPref.put(Const.PREF_IS_LOGIN, true)
+        sharedPref.put(Const.PREF_USEREMAIL, binding.editEmail.text.toString())
     }
 
     private fun skipWelcome() {
