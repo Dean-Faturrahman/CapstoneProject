@@ -370,6 +370,7 @@
             android:fontFamily="@font/pmedium"
             android:text="@string/btRegis"
             android:textSize="14dp"
+            android:enabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/check_Four" />

@@ -60,7 +60,7 @@
     <string name="input_indentitas">Pilih File</string>
     <string name="btUpload">Upgrade</string>
     <string name="email_not_valid">Format email tidak valid!</string>
-    <string name="password_not_valid">Password kurang dari 6 karakter!</string>
+    <string name="password_not_valid">Password kurang dari 8 karakter!</string>
     <string name="password_not_same">Password tidak sama!</string>
 
     <string-array name="data_item_name">
@@ -125,4 +125,6 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="not_phone">Masukan nomor yang aktif</string>
+    <string name="validate_name">Nama harus diisi</string>
 </resources>

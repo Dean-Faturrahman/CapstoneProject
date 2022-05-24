@@ -29,4 +29,10 @@ interface ApiService {
     fun homeUser(
         @Field("email") userEmail: String?
     ): Call<HomeResponse>
+
+    @FormUrlEncoded
+    @POST("profile.php")
+    fun profile(
+        @Field("userid") userId: String?
+    ): Call<ProfileResponse>
 }

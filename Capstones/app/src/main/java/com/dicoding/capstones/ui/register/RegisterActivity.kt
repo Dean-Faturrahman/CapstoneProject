@@ -16,7 +16,7 @@ import com.dicoding.capstones.data.UserRegisterModel
 import com.dicoding.capstones.databinding.ActivityRegisterBinding
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.Observable
-import io.reactivex.functions.Function4
+import io.reactivex.functions.Function5
 import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
@@ -48,10 +48,19 @@ class RegisterActivity : AppCompatActivity() {
             showEmailExistAlert(it)
         }
 
+        val nameStream = RxTextView.textChanges(binding.inputNama)
+            .skipInitialValue()
+            .map { name ->
+               name.length < 2
+            }
+        nameStream.subscribe{
+            showNameAlert(it)
+        }
+
         val passwordStream = RxTextView.textChanges(binding.inputPassword)
             .skipInitialValue()
             .map { password ->
-                password.length < 6
+                password.length < 8
             }
         passwordStream.subscribe {
             showPasswordMinimalAlert(it)
@@ -85,16 +94,17 @@ class RegisterActivity : AppCompatActivity() {
             passwordStream,
             passwordConfirmationStream,
             phoneStream,
-            Function4 { emailInvalid: Boolean, passwordInvalid: Boolean, passwordConfirmationInvalid: Boolean, phoneInvalid: Boolean ->
-                !emailInvalid && !passwordInvalid && !passwordConfirmationInvalid && !phoneInvalid
+            nameStream,
+            Function5 { emailInvalid: Boolean, passwordInvalid: Boolean, passwordConfirmationInvalid: Boolean, phoneInvalid: Boolean, inputnameInvalid: Boolean ->
+                !emailInvalid && !passwordInvalid && !passwordConfirmationInvalid && !phoneInvalid && !inputnameInvalid
             })
         invalidFieldsStream.subscribe { isValid ->
             if (isValid) {
                 binding.button.isEnabled = true
-                binding.button.setBackgroundColor(ContextCompat.getColor(this, R.color.purple_200))
+                binding.button.setBackgroundResource(R.drawable.shape_button)
             } else {
                 binding.button.isEnabled = false
-                binding.button.setBackgroundColor(ContextCompat.getColor(this, android.R.color.darker_gray))
+                binding.button.setBackgroundResource(R.drawable.shape_hide_button)
             }
         }
     }
@@ -111,7 +121,10 @@ class RegisterActivity : AppCompatActivity() {
         binding.inputPassConf.error = if (isNotValid) getString(R.string.password_not_same) else null
     }
     private fun showPhoneAlert(isNotValid: Boolean) {
-        binding.inputNumber.error = if (isNotValid) getString(R.string.password_not_same) else null
+        binding.inputNumber.error = if (isNotValid) getString(R.string.not_phone) else null
+    }
+    private fun showNameAlert(isNotValid: Boolean) {
+        binding.inputNama.error = if (isNotValid) getString(R.string.validate_name) else null
     }
 
     private fun setupView() {

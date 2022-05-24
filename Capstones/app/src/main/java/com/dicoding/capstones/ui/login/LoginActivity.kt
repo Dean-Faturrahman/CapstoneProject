@@ -7,7 +7,6 @@ import android.content.SharedPreferences
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.view.WindowInsets
@@ -85,10 +84,10 @@ class LoginActivity : AppCompatActivity() {
         invalidFieldsStream.subscribe { isValid ->
             if (isValid) {
                 binding.button.isEnabled = true
-                binding.button.setBackgroundColor(ContextCompat.getColor(this, R.color.purple_200))
+                binding.button.setBackgroundResource(R.drawable.shape_button)
             } else {
                 binding.button.isEnabled = false
-                binding.button.setBackgroundColor(ContextCompat.getColor(this, android.R.color.darker_gray))
+                binding.button.setBackgroundResource(R.drawable.shape_hide_button)
             }
         }
     }

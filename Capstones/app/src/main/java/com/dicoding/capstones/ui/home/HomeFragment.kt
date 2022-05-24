@@ -1,5 +1,6 @@
 package com.dicoding.capstones.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,7 @@ import com.dicoding.capstones.data.UserReview
 import com.dicoding.capstones.databinding.FragmentHomeBinding
 import com.dicoding.capstones.helper.Const
 import com.dicoding.capstones.helper.PrefHelper
+import com.dicoding.capstones.ui.login.LoginActivity
 
 class HomeFragment : Fragment() {
 
@@ -97,4 +99,5 @@ class HomeFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
 }

@@ -2,10 +2,10 @@ package com.dicoding.capstones.network
 
 import com.google.gson.annotations.SerializedName
 
-data class HomeResponse(
+data class ProfileResponse(
 
 	@field:SerializedName("data")
-	val data: List<HomeDataItem>,
+	val data: List<ProfileDataItem>,
 
 	@field:SerializedName("message")
 	val message: String,
@@ -14,7 +14,10 @@ data class HomeResponse(
 	val status: Int
 )
 
-data class HomeDataItem(
+data class ProfileDataItem(
+
+	@field:SerializedName("User_Email")
+	val userEmail: String,
 
 	@field:SerializedName("User_Name")
 	val userName: String,
@@ -22,11 +25,18 @@ data class HomeDataItem(
 	@field:SerializedName("User_Role")
 	val userRole: String,
 
+	@field:SerializedName("User_Phone")
+	val userPhone: String,
+
+	@field:SerializedName("User_Gender")
+	val userGender: String,
+
 	@field:SerializedName("User_Id")
 	val userId: String,
 
 	@field:SerializedName("User_Photo")
-	val userPhoto: String
+	val userPhoto: String,
+
+	@field:SerializedName("User_DOB")
+	val userDOB: String
 )
-
-
