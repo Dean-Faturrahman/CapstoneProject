@@ -129,4 +129,5 @@
     <string name="validate_name">Nama harus diisi</string>
     <string name="greetings">Hi, </string>
     <string name="yearsOld"> Tahun</string>
+    <string name="search_hint">Contoh: Hartati atau guru fisika</string>
 </resources>

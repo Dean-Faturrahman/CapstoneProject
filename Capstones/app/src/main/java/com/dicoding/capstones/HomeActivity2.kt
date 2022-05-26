@@ -34,6 +34,5 @@ class HomeActivity2 : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        navView.background = null
     }
 }

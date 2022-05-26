@@ -1,9 +1,7 @@
 package com.dicoding.capstones.network
 
 import retrofit2.Call
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface ApiService {
     @FormUrlEncoded
@@ -41,4 +39,10 @@ interface ApiService {
     fun profile(
         @Field("userid") userId: String?
     ): Call<ProfileResponse>
+
+    @FormUrlEncoded
+    @POST("search.php")
+    fun getUserList(
+        @Field("search") search: String?
+    ): Call<SearchResponse>
 }
