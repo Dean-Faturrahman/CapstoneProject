@@ -4,41 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.chat.NotificationsFragment">
+    tools:context=".ui.chat.ChatFragment">
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        style="@style/tablayout.bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:elevation="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginVertical="13dp"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/pmedium"
+            android:textColor="@color/h1"
+            android:text="Obrolan" />
+
+    </LinearLayout>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"
         style="@style/tablayout.bar"
-        android:minHeight="?actionBarSize"
+        android:layout_height="40dp"
+        android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tabIndicatorColor="@color/white"
-        app:tabIndicatorFullWidth="false"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:tabIndicatorAnimationMode="linear"
+        app:tabIndicatorColor="@color/purple_200"
         app:tabIndicatorHeight="2dp"
         app:tabMode="fixed"
-        app:tabRippleColor="@color/white"
-        app:tabTextColor="@color/white" />
+        app:tabTextColor="@color/h1" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tabs" />
 
-
-    <TextView
-        android:id="@+id/text_chat"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
