@@ -185,6 +185,8 @@ class EditProfileActivity : AppCompatActivity() {
         )
     }
 
+
+
     private fun editService() {
 //        val file = reduceFileImage(getFile as File)
 //        val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
@@ -193,15 +195,26 @@ class EditProfileActivity : AppCompatActivity() {
 //            file.name,
 //            requestImageFile
 //        )
-        editProfileViewModel.editProfile(
-            sharedPref.getString(Const.PREF_USERID)!!,
-            "https://storage.googleapis.com/cobacobaa/capstone/user.png",
-            setEditData().userPassword.toString(),
-            setEditData().userName.toString(),
-            setEditData().userPhone.toString(),
-            setEditData().userDob.toString(),
-            setEditData().userGender.toString(),
-        )
+        if(binding.inputPassword.text.isNotEmpty()){
+            editProfileViewModel.editProfileWithPass(
+                sharedPref.getString(Const.PREF_USERID)!!,
+                "https://storage.googleapis.com/cobacobaa/capstone/user.png",
+                setEditData().userPassword.toString(),
+                setEditData().userName.toString(),
+                setEditData().userPhone.toString(),
+                setEditData().userDob.toString(),
+                setEditData().userGender.toString(),
+            )
+        }else{
+            editProfileViewModel.editProfile(
+                sharedPref.getString(Const.PREF_USERID)!!,
+                "https://storage.googleapis.com/cobacobaa/capstone/user.png",
+                setEditData().userName.toString(),
+                setEditData().userPhone.toString(),
+                setEditData().userDob.toString(),
+                setEditData().userGender.toString(),
+            )
+        }
         editProfileViewModel.isLoading.observe(this) {
             showLoading(it)
         }
@@ -263,6 +276,9 @@ class EditProfileActivity : AppCompatActivity() {
         val gender = intent.getStringExtra(EXTRA_GENDER)
         val photo = intent.getStringExtra(EXTRA_PHOTO)
         val date = intent.getStringExtra(EXTRA_DATE)
+        val pass = intent.getStringExtra(EXTRA_PASS)
+
+        binding.inputPassword.setText(pass)
         binding.inputNama.setText(name)
         binding.inputNumber.setText(hp)
         binding.tvDate.setText(date)
@@ -314,5 +330,6 @@ class EditProfileActivity : AppCompatActivity() {
         const val EXTRA_NOMOR = "extra_nomor"
         const val EXTRA_GENDER = "extra_gender"
         const val EXTRA_DATE = "extra_gender"
+        const val EXTRA_PASS = "extra_pass"
     }
 }

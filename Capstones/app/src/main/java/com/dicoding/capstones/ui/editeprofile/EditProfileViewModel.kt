@@ -21,7 +21,7 @@ class EditProfileViewModel : ViewModel() {
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> = _errorMessage
 
-    fun editProfile(
+    fun editProfileWithPass(
         userId: String,
         photo: String,
         userPassword: String,
@@ -31,10 +31,47 @@ class EditProfileViewModel : ViewModel() {
         userGender: String
     ) {
         _isLoading.value = true
-        val client = ApiConfig.getApiService().editPerofile(
+        val client = ApiConfig.getApiService().editProfileWithPass(
             userId,
             photo,
             userPassword,
+            userName,
+            userPhone,
+            userDob,
+            userGender
+        )
+        client.enqueue(object : Callback<EditProfileResponse> {
+
+            override fun onResponse(
+                call: Call<EditProfileResponse>,
+                response: Response<EditProfileResponse>
+            ) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    _editProfile.value = response.body()
+                }
+            }
+
+            override fun onFailure(call: Call<EditProfileResponse>, t: Throwable) {
+                _isLoading.value = false
+                _errorMessage.value = t.message
+                Log.e(TAG, "onFailure: ${t.message.toString()}")
+            }
+        })
+    }
+
+    fun editProfile(
+        userId: String,
+        photo: String,
+        userName: String,
+        userPhone: String,
+        userDob: String,
+        userGender: String
+    ) {
+        _isLoading.value = true
+        val client = ApiConfig.getApiService().editProfile(
+            userId,
+            photo,
             userName,
             userPhone,
             userDob,

@@ -48,10 +48,21 @@ interface ApiService {
 
     @FormUrlEncoded
     @POST("editprofile.php")
-    fun editPerofile(
+    fun editProfileWithPass(
         @Field("userid") userId: String,
         @Field("photo") photo: String,
         @Field("password") userPassword: String,
+        @Field("name") userName: String,
+        @Field("phone") userPhone: String,
+        @Field("dob") userDob: String,
+        @Field("gender") userGender: String,
+    ): Call<EditProfileResponse>
+
+    @FormUrlEncoded
+    @POST("editprofile.php")
+    fun editProfile(
+        @Field("userid") userId: String,
+        @Field("photo") photo: String,
         @Field("name") userName: String,
         @Field("phone") userPhone: String,
         @Field("dob") userDob: String,
