@@ -16,6 +16,7 @@ import com.dicoding.capstones.R
 import com.dicoding.capstones.databinding.FragmentProfileBinding
 import com.dicoding.capstones.helper.Const
 import com.dicoding.capstones.helper.PrefHelper
+import com.dicoding.capstones.ui.editeprofile.EditProfileActivity
 import com.dicoding.capstones.ui.login.LoginActivity
 import java.util.*
 
@@ -28,22 +29,20 @@ class   ProfileFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var sharedPref: PrefHelper
 
+
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val profileViewModel =
-            ViewModelProvider(this).get(ProfileViewModel::class.java)
 
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
         sharedPref = PrefHelper(requireContext())
 
-
+        val profileViewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
         profileViewModel.getProfileData(sharedPref.getString(Const.PREF_USERID))
-
         profileViewModel.profile.observe(viewLifecycleOwner) {
             Glide.with(requireContext())
                 .load(it[0].userPhoto)
@@ -65,6 +64,27 @@ class   ProfileFragment : Fragment() {
             binding.btnRole.text = it[0].userRole
         }
 
+        binding.btnEdit.setOnClickListener{
+            profileViewModel.profile.observe(viewLifecycleOwner){
+                val userId = sharedPref.getString(Const.PREF_USERID)
+                val name = binding.tvNama.text
+                val hp = binding.tvNohp.text
+                val gender = binding.tvGender.text
+                val profile = it[0].userPhoto
+                val date = it[0].userDOB
+                val toEditProfile = Intent(requireContext(), EditProfileActivity::class.java)
+
+                toEditProfile.putExtra(EditProfileActivity.EXTRA_USERID, userId)
+                toEditProfile.putExtra(EditProfileActivity.EXTRA_NAME, name)
+                toEditProfile.putExtra(EditProfileActivity.EXTRA_NOMOR, hp)
+                toEditProfile.putExtra(EditProfileActivity.EXTRA_GENDER, gender)
+                toEditProfile.putExtra(EditProfileActivity.EXTRA_PHOTO, profile)
+                toEditProfile.putExtra(EditProfileActivity.EXTRA_DATE, date)
+                startActivity(toEditProfile)
+            }
+        }
+
+        editProfile()
         logout()
 
         return root
@@ -74,6 +94,11 @@ class   ProfileFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+    private fun editProfile(){
+
+    }
+
 
     private fun logout() {
         binding.tvLogout.setOnClickListener {

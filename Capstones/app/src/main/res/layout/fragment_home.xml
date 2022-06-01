@@ -87,6 +87,7 @@
                 android:fontFamily="@font/pmedium"
                 android:text="@string/informasi"
                 android:textSize="14sp" />
+
             <ImageView
                 android:layout_width="344dp"
                 android:layout_height="144dp"

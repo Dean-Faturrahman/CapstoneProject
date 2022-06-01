@@ -45,4 +45,16 @@ interface ApiService {
     fun getUserList(
         @Field("search") search: String?
     ): Call<SearchResponse>
+
+    @FormUrlEncoded
+    @POST("editprofile.php")
+    fun editPerofile(
+        @Field("userid") userId: String,
+        @Field("photo") photo: String,
+        @Field("password") userPassword: String,
+        @Field("name") userName: String,
+        @Field("phone") userPhone: String,
+        @Field("dob") userDob: String,
+        @Field("gender") userGender: String,
+    ): Call<EditProfileResponse>
 }

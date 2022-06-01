@@ -134,4 +134,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="tab_text_student">Student</string>
     <string name="tab_text_teacher">Teacher</string>
+    <string name="btUbah">Ubah</string>
+    <string name="ubahpass">Ubah Password</string>
+    <string name="konfirpassedit">Konfirmasi Password Baru</string>
+    <string name="info_pass">Kosongkan jika tidak ada perubahan!</string>
+    <string name="arteris">********</string>
 </resources>

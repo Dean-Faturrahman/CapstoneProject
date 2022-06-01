@@ -16,7 +16,7 @@
             android:name=".ui.classlist.ClassListActivity"
             android:exported="false" />
         <activity
-            android:name=".EditProfileActivity"
+            android:name=".ui.editeprofile.EditProfileActivity"
             android:exported="false" />
         <activity
             android:name=".ChattingRoomActivity"

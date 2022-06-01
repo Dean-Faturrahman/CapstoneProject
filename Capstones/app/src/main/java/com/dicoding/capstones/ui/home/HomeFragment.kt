@@ -102,7 +102,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun toClass(data: String?) {
-        val toClass = Intent(requireActivity(), ClassListActivity::class.java)
+        val toClass = Intent(requireActivity(),  ClassListActivity::class.java)
         toClass.putExtra(ClassListActivity.EXTRA_SUBJECT, data)
         startActivity(toClass)
     }
