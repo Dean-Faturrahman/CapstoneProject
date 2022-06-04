@@ -103,8 +103,6 @@ class SearchFragment : Fragment() {
         binding.rvListGuru.layoutManager = layoutManager
     }
 
-
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

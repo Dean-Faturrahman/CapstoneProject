@@ -1,6 +1,7 @@
 package com.dicoding.capstones.ui.editeprofile
 
 import android.annotation.SuppressLint
+import android.app.ProgressDialog
 import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
@@ -29,13 +30,21 @@ import com.dicoding.capstones.databinding.ActivityEditProfileBinding
 import com.dicoding.capstones.helper.Const
 import com.dicoding.capstones.helper.PrefHelper
 import com.dicoding.capstones.ui.register.RegisterViewModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthException
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import com.jakewharton.rxbinding2.widget.RxTextView
+import com.squareup.picasso.Picasso
 import io.reactivex.Observable
 import io.reactivex.functions.Function4
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.*
+import java.text.SimpleDateFormat
 import java.util.*
 
 class EditProfileActivity : AppCompatActivity() {
@@ -44,12 +53,21 @@ class EditProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditProfileBinding
     private val editProfileViewModel by viewModels<EditProfileViewModel>()
     private lateinit var sharedPref: PrefHelper
+    private lateinit var auth : FirebaseAuth
+    private lateinit var imageUri : Uri
+    private lateinit var databaseReference: DatabaseReference
+    private lateinit var storageReference: StorageReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
      binding = ActivityEditProfileBinding.inflate(layoutInflater)
      setContentView(binding.root)
+
+        auth = FirebaseAuth.getInstance()
+
+        val user = auth.currentUser?.uid
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users")
 
         sharedPref = PrefHelper(this)
 
@@ -188,16 +206,11 @@ class EditProfileActivity : AppCompatActivity() {
 
 
     private fun editService() {
-//        val file = reduceFileImage(getFile as File)
-//        val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
-//        val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
-//            "photo",
-//            file.name,
-//            requestImageFile
-//        )
+
         if(binding.inputPassword.text.isNotEmpty()){
             editProfileViewModel.editProfileWithPass(
                 sharedPref.getString(Const.PREF_USERID)!!,
+
                 "https://storage.googleapis.com/cobacobaa/capstone/user.png",
                 setEditData().userPassword.toString(),
                 setEditData().userName.toString(),
@@ -220,20 +233,6 @@ class EditProfileActivity : AppCompatActivity() {
         }
     }
 
-//    fun reduceFileImage(file: File): File {
-//        val bitmap = BitmapFactory.decodeFile(file.path)
-//        var compressQuality = 100
-//        var streamLength: Int
-//        do {
-//            val bmpStream = ByteArrayOutputStream()
-//            bitmap.compress(Bitmap.CompressFormat.JPEG, compressQuality, bmpStream)
-//            val bmpPicByteArray = bmpStream.toByteArray()
-//            streamLength = bmpPicByteArray.size
-//            compressQuality -= 5
-//        } while (streamLength > 1000000)
-//        bitmap.compress(Bitmap.CompressFormat.JPEG, compressQuality, FileOutputStream(file))
-//        return file
-//    }
 
     private fun editObserver() {
         editProfileViewModel.editProfile.observe(this) {
@@ -258,15 +257,54 @@ class EditProfileActivity : AppCompatActivity() {
 
     private fun setupAction(){
         binding.button.setOnClickListener {
+            uploadImage()
             editService()
         }
 
         binding.btnEditPhoto.setOnClickListener{
-            startGallery()
+            selectImage()
         }
 
         binding.imgItemPhoto.setOnClickListener{
-            startGallery()
+            selectImage()
+        }
+    }
+
+    private fun uploadImage(){
+        val progressBar = ProgressDialog(this)
+        progressBar.setMessage("Save Data...")
+        progressBar.setCancelable(false)
+        progressBar.show()
+
+        val formatDate  = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.getDefault())
+        val now = Date()
+        val fileName = formatDate.format(now)
+        val storageReference = FirebaseStorage.getInstance().getReference("images/$fileName")
+
+        storageReference.putFile(imageUri).addOnSuccessListener {
+            binding.imgItemPhoto.setImageURI(null)
+            Toast.makeText(this@EditProfileActivity, "Berhasil diubah", Toast.LENGTH_SHORT).show()
+            if (progressBar.isShowing) progressBar.dismiss()
+
+        }.addOnFailureListener{
+            if (progressBar.isShowing) progressBar.dismiss()
+            Toast.makeText(this@EditProfileActivity, "Failed", Toast.LENGTH_SHORT).show()
+
+        }
+    }
+    private fun selectImage() {
+       val intent = Intent()
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+        startActivityForResult(intent, 100)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 100 && resultCode == RESULT_OK){
+            imageUri = data?.data!!
+            binding.imgItemPhoto.setImageURI(imageUri)
         }
     }
 
@@ -285,42 +323,6 @@ class EditProfileActivity : AppCompatActivity() {
         Glide.with(this)
             .load(photo)
             .into(binding.imgItemPhoto)
-    }
-
-    private fun startGallery() {
-        val intent = Intent()
-        intent.action = Intent.ACTION_GET_CONTENT
-        intent.type = "image/*"
-        val chooser = Intent.createChooser(intent, "Choose a Picture")
-        launcherIntentGallery.launch(chooser)
-    }
-
-    private var getFile: File? = null
-
-    private val launcherIntentGallery = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
-    ) { result ->
-        if (result.resultCode == RESULT_OK) {
-            val selectedImg: Uri = result.data?.data as Uri
-            val myFile = uriToFile(selectedImg, this@EditProfileActivity)
-            getFile = myFile
-            binding.imgItemPhoto.setImageURI(selectedImg)
-        }
-    }
-
-    fun uriToFile(selectedImg: Uri, context: Context): File {
-        val contentResolver: ContentResolver = context.contentResolver
-        val myFile = createTempFile(context.toString())
-
-        val inputStream = contentResolver.openInputStream(selectedImg) as InputStream
-        val outputStream: OutputStream = FileOutputStream(myFile)
-        val buf = ByteArray(1024)
-        var len: Int
-        while (inputStream.read(buf).also { len = it } > 0) outputStream.write(buf, 0, len)
-        outputStream.close()
-        inputStream.close()
-
-        return myFile
     }
 
     companion object{
