@@ -3,11 +3,13 @@ package com.dicoding.capstones.ui.chatroom
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.capstones.adapter.itemhome.MessageAdapter
 import com.dicoding.capstones.data.MessageModel
 import com.dicoding.capstones.databinding.ActivityChattingRoomBinding
+import com.dicoding.capstones.ui.register.RegisterViewModel
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
@@ -18,6 +20,7 @@ class ChattingRoomActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChattingRoomBinding
     private lateinit var db: FirebaseDatabase
     private lateinit var adapter: MessageAdapter
+    private val chattingRoomViewModel by viewModels<ChattingRoomViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,15 +32,12 @@ class ChattingRoomActivity : AppCompatActivity() {
         val getIdUser = intent.getStringExtra(EXTRA_IDUSER)
         val getOrderId = intent.getStringExtra(EXTRA_ORDERID)
 
-        Log.e("Check Order ID", getOrderId.toString())
-
         supportActionBar?.hide()
+        binding.nameUserChat.text = getName
 
         binding.btnBack.setOnClickListener {
             finish()
         }
-
-        binding.nameUserChat.text = getName
 
         db = Firebase.database
 
@@ -68,6 +68,16 @@ class ChattingRoomActivity : AppCompatActivity() {
             .build()
         adapter = MessageAdapter(options, getIdUser)
         binding.messageRecyclerView.adapter = adapter
+
+        binding.btnEnd.setOnClickListener {
+            chattingRoomViewModel.completeOrder(getOrderId)
+            chattingRoomViewModel.orderComplete.observe(this) {
+                if (it.status == 1) {
+                    db.reference.child("chat").child(getOrderId.toString()).child("status").setValue("Completed")
+                    finish()
+                }
+            }
+        }
     }
 
     override fun onResume() {

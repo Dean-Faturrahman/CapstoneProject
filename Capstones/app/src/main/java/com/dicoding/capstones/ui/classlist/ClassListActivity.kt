@@ -64,6 +64,8 @@ class ClassListActivity : AppCompatActivity() {
                     .setValue(teacher)
                 finish()
             }
+            db.reference.child("chat").child(dataItem.orderId).child("status")
+                .setValue(dataItem.orderStatus)
         }
     }
 

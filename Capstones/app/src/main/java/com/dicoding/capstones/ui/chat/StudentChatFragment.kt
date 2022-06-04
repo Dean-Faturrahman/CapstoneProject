@@ -74,8 +74,9 @@ class StudentChatFragment : Fragment() {
 
                             for (snapshot1 in snapshot.children) {
                                 val getStudentId = snapshot1.child("student").child("id").value
+                                val getStatusOrder = snapshot1.child("status").value.toString()
 
-                                if (getStudentId == sharedPref.getString(Const.PREF_USERID)) {
+                                if (getStudentId == sharedPref.getString(Const.PREF_USERID) && getStatusOrder == "On Going") {
                                     val getOrderId = snapshot1.key
                                     val getTeacherId = snapshot1.child("teacher").child("id").value
                                     val getTeacherName = snapshot1.child("teacher").child("name").value

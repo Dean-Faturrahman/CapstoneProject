@@ -59,4 +59,10 @@ interface ApiService {
         @Field("userrole") userRole: String?,
         @Field("userid") userId: String?
     ): Call<OrderlistResponse>
+
+    @FormUrlEncoded
+    @POST("ordercomplete.php")
+    fun completeOrder(
+        @Field("orderid") orderId: String?,
+    ): Call<OrderCompleteResponse>
 }
