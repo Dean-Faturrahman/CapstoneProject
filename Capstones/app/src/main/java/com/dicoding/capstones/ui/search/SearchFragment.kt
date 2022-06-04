@@ -22,7 +22,6 @@ import com.dicoding.capstones.adapter.itemhome.ClassListAdapter
 import com.dicoding.capstones.adapter.itemhome.SearchListAdapter
 import com.dicoding.capstones.databinding.FragmentSearchBinding
 import com.dicoding.capstones.network.SearchDataItem
-import kotlinx.android.synthetic.main.fragment_search.*
 
 class SearchFragment : Fragment() {
 
@@ -57,14 +56,14 @@ class SearchFragment : Fragment() {
         val searchManager = context?.getSystemService(Context.SEARCH_SERVICE) as SearchManager
         searchViewModel.listUser.observe(viewLifecycleOwner) { users ->
             setUser(users)
-            searchView.clearFocus()
+            binding.searchView.clearFocus()
         }
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(requireActivity().componentName))
-        searchView.queryHint = resources.getString(R.string.search_hint)
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+        binding.searchView.setSearchableInfo(searchManager.getSearchableInfo(requireActivity().componentName))
+        binding.searchView.queryHint = resources.getString(R.string.search_hint)
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(p0: String?): Boolean {
-                searchView.clearFocus()
+                binding.searchView.clearFocus()
                 searchUserData(p0!!)
                 return true
             }

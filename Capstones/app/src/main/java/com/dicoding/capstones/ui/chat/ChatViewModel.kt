@@ -1,13 +1,49 @@
 package com.dicoding.capstones.ui.chat
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.dicoding.capstones.network.ApiConfig
+import com.dicoding.capstones.network.ProfileDataItem
+import com.dicoding.capstones.network.ProfileResponse
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class ChatViewModel : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is chat Fragment"
+    private val _profile = MutableLiveData<List<ProfileDataItem>>()
+    val profile: LiveData<List<ProfileDataItem>> = _profile
+
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
+
+    private val _errorMessage = MutableLiveData<String>()
+    val errorMessage: LiveData<String> = _errorMessage
+
+    fun getProfileData(userId: String?) {
+        _isLoading.value = true
+        val client = ApiConfig.getApiService().profile(userId)
+        client.enqueue(object : Callback<ProfileResponse> {
+
+            override fun onResponse(call: Call<ProfileResponse>, response: Response<ProfileResponse>) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    _profile.value = response.body()?.data
+                    Log.e(TAG, _profile.value.toString())
+                }
+            }
+
+            override fun onFailure(call: Call<ProfileResponse>, t: Throwable) {
+                _isLoading.value = false
+                _errorMessage.value = t.message
+                Log.e(TAG, "onFailure: ${t.message.toString()}")
+            }
+        })
     }
-    val text: LiveData<String> = _text
+
+    companion object {
+        private const val TAG = "profileViewModel"
+    }
 }

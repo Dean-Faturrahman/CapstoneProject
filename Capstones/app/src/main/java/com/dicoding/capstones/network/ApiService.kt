@@ -68,4 +68,22 @@ interface ApiService {
         @Field("dob") userDob: String,
         @Field("gender") userGender: String,
     ): Call<EditProfileResponse>
+    @POST("order.php")
+    fun createOrder(
+        @Field("classid") classId: String?,
+        @Field("userid") userId: String?
+    ): Call<CreateOrderResponse>
+
+    @FormUrlEncoded
+    @POST("orderlist1.php")
+    fun getOrderOnGoing(
+        @Field("userrole") userRole: String?,
+        @Field("userid") userId: String?
+    ): Call<OrderlistResponse>
+
+    @FormUrlEncoded
+    @POST("ordercomplete.php")
+    fun completeOrder(
+        @Field("orderid") orderId: String?,
+    ): Call<OrderCompleteResponse>
 }

@@ -30,10 +30,14 @@ class ClassListAdapter(private val listClass: ArrayList<ClassList>) : RecyclerVi
         holder.binding.tvTeacherName.text = name
         holder.binding.tvTeacherGender.text = gender
         holder.binding.tvTeacherDesc.text = subject
+
+        holder.binding.btnOrder.setOnClickListener {
+            onItemClickCallback.onItemClicked(listClass[holder.adapterPosition])
+        }
     }
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: ItemHome?)
+        fun onItemClicked(data: ClassList?)
     }
 
     override fun getItemCount(): Int = listClass.size

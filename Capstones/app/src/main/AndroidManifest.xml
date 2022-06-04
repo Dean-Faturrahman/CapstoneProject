@@ -19,7 +19,7 @@
             android:name=".ui.editeprofile.EditProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".ChattingRoomActivity"
+            android:name=".ui.chatroom.ChattingRoomActivity"
             android:exported="false" />
         <activity
             android:name=".HomeActivity2"
