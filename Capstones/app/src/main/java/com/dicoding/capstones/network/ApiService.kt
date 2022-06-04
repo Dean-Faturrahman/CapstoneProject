@@ -45,4 +45,18 @@ interface ApiService {
     fun getUserList(
         @Field("search") search: String?
     ): Call<SearchResponse>
+
+    @FormUrlEncoded
+    @POST("order.php")
+    fun createOrder(
+        @Field("classid") classId: String?,
+        @Field("userid") userId: String?
+    ): Call<CreateOrderResponse>
+
+    @FormUrlEncoded
+    @POST("orderlist1.php")
+    fun getOrderOnGoing(
+        @Field("userrole") userRole: String?,
+        @Field("userid") userId: String?
+    ): Call<OrderlistResponse>
 }

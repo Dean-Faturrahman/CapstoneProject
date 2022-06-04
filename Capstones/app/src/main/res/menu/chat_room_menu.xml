@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/end_button"
+        android:orderInCategory="100"
+        android:title="asd"
+        app:showAsAction="always"
+        android:icon="@drawable/shape_buttonred"
+        />
+</menu>

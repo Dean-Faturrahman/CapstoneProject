@@ -32,6 +32,15 @@
         app:layout_constraintTop_toTopOf="@+id/img_item_photo" />
 
     <TextView
+        android:id="@+id/tv_subject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="subject"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/img_item_photo" />
+
+    <TextView
         android:id="@+id/tv_message_received"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
