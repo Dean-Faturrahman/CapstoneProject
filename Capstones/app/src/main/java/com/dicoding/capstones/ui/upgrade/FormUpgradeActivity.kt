@@ -40,8 +40,8 @@ class FormUpgradeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFormUpgradeBinding
     private val upgradeUserViewModel by viewModels<UpgradeUserModel>()
     private lateinit var sharedPref: PrefHelper
-    private var imageUri : Uri? = null
-    private var downloadUrl : Uri? = null
+    private var imageUri: Uri? = null
+    private var downloadUrl: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,8 +79,9 @@ class FormUpgradeActivity : AppCompatActivity() {
         supportActionBar?.title = "Upgrade Menjadi Guru"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
+
     @SuppressLint("CheckResult")
-    private fun validationForm(){
+    private fun validationForm() {
         val nilai = RxTextView.textChanges(binding.inputNilai)
             .skipInitialValue()
             .map { phone ->
@@ -95,7 +96,7 @@ class FormUpgradeActivity : AppCompatActivity() {
             .map { name ->
                 name.length < 2
             }
-        year.subscribe{
+        year.subscribe {
             showYearAlert(it)
         }
 
@@ -104,7 +105,7 @@ class FormUpgradeActivity : AppCompatActivity() {
             .map { name ->
                 name.length < 2
             }
-        year1.subscribe{
+        year1.subscribe {
             showYearAlert(it)
         }
 
@@ -140,88 +141,86 @@ class FormUpgradeActivity : AppCompatActivity() {
             uploadImage()
         }
 
-        binding.btnImg.setOnClickListener{
-//            selectImage()
+        binding.btnImg.setOnClickListener {
             startTakePhoto()
         }
     }
 
-        private fun setUpgradeUserData(): UpgradeModel {
-            val subject = when (binding.radioGroup.checkedRadioButtonId) {
-                binding.radio1.id -> "Matematika"
-                binding.radio2.id -> "Biologi"
-                binding.radio3.id -> "Fisika"
-                binding.radio4.id -> "Bahasa Indonesia"
-                binding.radio5.id -> "Bahasa Inggris"
-                binding.radio6.id -> "Akuntansi"
-                else -> ""
-            }
-
-            return UpgradeModel(
-                sharedPref.getString(Const.PREF_USERID)!!,
-                downloadUrl.toString(),
-                binding.inputExp.text.toString().toInt(),
-                subject,
-                binding.inputNilai.text.toString().toInt()
-            )
+    private fun setUpgradeUserData(): UpgradeModel {
+        val subject = when (binding.radioGroup.checkedRadioButtonId) {
+            binding.radio1.id -> "Matematika"
+            binding.radio2.id -> "Biologi"
+            binding.radio3.id -> "Fisika"
+            binding.radio4.id -> "Bahasa Indonesia"
+            binding.radio5.id -> "Bahasa Inggris"
+            binding.radio6.id -> "Akuntansi"
+            else -> ""
         }
 
-        private fun upgradeUserService() {
-            upgradeUserViewModel.upgradeUser(
-                sharedPref.getString(Const.PREF_USERID)!!,
-               setUpgradeUserData().idCard.toString(),
-                setUpgradeUserData().teachExp.toString().toInt(),
-                setUpgradeUserData().subject.toString(),
-                setUpgradeUserData().score.toString().toInt()
-            )
-        }
-
-    private fun uploadImage(){
-        val progressBar = ProgressDialog(this)
-        progressBar.setMessage("Save Data...")
-        progressBar.setCancelable(false)
-        progressBar.show()
-
-        val formatDate  = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.getDefault())
-        val now = Date()
-        val fileName = formatDate.format(now)
-        val storageReference = FirebaseStorage.getInstance().getReference("images/$fileName")
-
-        imageUri?.let {
-            storageReference.putFile(imageUri!!).continueWithTask { task ->
-                if (!task.isSuccessful) {
-                    task.exception?.let {
-                        throw it
-                    }
-                }
-                storageReference.downloadUrl
-
-            }.addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    downloadUrl = task.result
-                }
-
-            }.addOnSuccessListener {
-                binding.imgCard.setImageURI(null)
-                upgradeUserService()
-                Toast.makeText(this@FormUpgradeActivity, "Berhasil diubah", Toast.LENGTH_SHORT).show()
-                if (progressBar.isShowing) progressBar.dismiss()
-                toHome()
-
-            }.addOnFailureListener{
-                if (progressBar.isShowing) progressBar.dismiss()
-                Toast.makeText(this@FormUpgradeActivity, "Failed", Toast.LENGTH_SHORT).show()
-
-            }
-        }
+        return UpgradeModel(
+            sharedPref.getString(Const.PREF_USERID)!!,
+            downloadUrl.toString(),
+            binding.inputExp.text.toString().toInt(),
+            subject,
+            binding.inputNilai.text.toString().toInt()
+        )
     }
 
-//    private fun selectImage() {
-//        val intent = Intent()
-//        intent.type = "image/*"
-//        intent.action = Intent.ACTION_GET_CONTENT
-//        startActivityForResult(intent, 100)
-//    }
+    private fun upgradeUserService() {
+        upgradeUserViewModel.upgradeUser(
+            sharedPref.getString(Const.PREF_USERID)!!,
+            setUpgradeUserData().idCard.toString(),
+            setUpgradeUserData().teachExp.toString().toInt(),
+            setUpgradeUserData().subject.toString(),
+            setUpgradeUserData().score.toString().toInt()
+        )
+    }
+
+    private fun uploadImage() {
+        if (imageUri != null) {
+            val progressBar = ProgressDialog(this)
+            progressBar.setMessage("Save Data...")
+            progressBar.setCancelable(false)
+            progressBar.show()
+
+            val formatDate = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.getDefault())
+            val now = Date()
+            val fileName = formatDate.format(now)
+            val storageReference = FirebaseStorage.getInstance().getReference("images/$fileName")
+
+            imageUri?.let {
+                storageReference.putFile(imageUri!!).continueWithTask { task ->
+                    if (!task.isSuccessful) {
+                        task.exception?.let {
+                            throw it
+                        }
+                    }
+                    storageReference.downloadUrl
+
+                }.addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        downloadUrl = task.result
+                    }
+
+                }.addOnSuccessListener {
+                    binding.imgCard.setImageURI(null)
+                    upgradeUserService()
+                    Toast.makeText(this@FormUpgradeActivity, "Berhasil diubah", Toast.LENGTH_SHORT)
+                        .show()
+                    if (progressBar.isShowing) progressBar.dismiss()
+                    toHome()
+
+                }.addOnFailureListener {
+                    if (progressBar.isShowing) progressBar.dismiss()
+                    Toast.makeText(this@FormUpgradeActivity, "Failed", Toast.LENGTH_SHORT).show()
+
+                }
+            }
+        } else {
+            Toast.makeText(this@FormUpgradeActivity, "Masukan Id Card Anda", Toast.LENGTH_SHORT)
+                .show()
+        }
+    }
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -250,13 +249,12 @@ class FormUpgradeActivity : AppCompatActivity() {
     ) {
         if (it.resultCode == RESULT_OK) {
             val imageBitmap = it.data?.extras?.get("data") as Bitmap
-            imageUri = getImageUri(this, imageBitmap)
-            Log.e("megi", imageUri.toString())
+            imageUri = getUri(this, imageBitmap)
             binding.imgCard.setImageBitmap(imageBitmap)
         }
     }
 
-    fun getImageUri(inContext: Context, inImage: Bitmap): Uri? {
+    private fun getUri(inContext: Context, inImage: Bitmap): Uri? {
         val bytes = ByteArrayOutputStream()
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
         val path = Images.Media.insertImage(inContext.contentResolver, inImage, "Title", null)
@@ -269,34 +267,25 @@ class FormUpgradeActivity : AppCompatActivity() {
         launcherIntentCamera.launch(intent)
     }
 
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//
-//        if (requestCode == 100 && resultCode == RESULT_OK){
-//            imageUri = data?.data!!
-//            binding.imgCard.setImageURI(imageUri)
-//        }
-//    }
-
-        private fun registerObserver() {
-            upgradeUserViewModel.upgrade.observe(this) {
-                if (it.status == 1) {
-                    Toast.makeText(this@FormUpgradeActivity, it.message, Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(this@FormUpgradeActivity, it.message, Toast.LENGTH_SHORT).show()
-                }
+    private fun registerObserver() {
+        upgradeUserViewModel.upgrade.observe(this) {
+            if (it.status == 1) {
+                Toast.makeText(this@FormUpgradeActivity, it.message, Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this@FormUpgradeActivity, it.message, Toast.LENGTH_SHORT).show()
             }
         }
+    }
 
-        private fun errorObserver() {
-            upgradeUserViewModel.errorMessage.observe(this) {
-                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
-            }
+    private fun errorObserver() {
+        upgradeUserViewModel.errorMessage.observe(this) {
+            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
         }
+    }
 
-        private fun toHome() {
-            finish()
-        }
+    private fun toHome() {
+        finish()
+    }
 
     companion object {
         private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)

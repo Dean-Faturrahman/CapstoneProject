@@ -219,6 +219,7 @@
         android:fontFamily="@font/pmedium"
         android:text="@string/btUpload"
         android:textSize="14sp"
+        android:enabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/inputExp"
         app:layout_constraintStart_toStartOf="@+id/inputExp"
