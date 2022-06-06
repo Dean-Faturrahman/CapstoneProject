@@ -1,4 +1,4 @@
-package com.dicoding.capstones.adapter.itemhome
+package com.dicoding.capstones.adapter
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment

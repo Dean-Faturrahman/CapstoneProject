@@ -1,10 +1,9 @@
-package com.dicoding.capstones.adapter.itemhome
+package com.dicoding.capstones.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.capstones.data.ItemHome
-import com.dicoding.capstones.data.ItemSubject
 import com.dicoding.capstones.databinding.ItemBinding
 
 class ListItemAdapter(private val listItemHome: ArrayList<ItemHome>) : RecyclerView.Adapter<ListItemAdapter.ListViewHolder>() {

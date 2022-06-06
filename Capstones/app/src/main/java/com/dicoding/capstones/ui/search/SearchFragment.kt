@@ -2,24 +2,17 @@ package com.dicoding.capstones.ui.search
 
 import android.app.SearchManager
 import android.content.Context
-import android.content.Context.SEARCH_SERVICE
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
-import android.widget.TextView
-import androidx.activity.viewModels
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.capstones.R
-import com.dicoding.capstones.adapter.itemhome.ClassListAdapter
-import com.dicoding.capstones.adapter.itemhome.SearchListAdapter
+import com.dicoding.capstones.adapter.SearchListAdapter
 import com.dicoding.capstones.databinding.FragmentSearchBinding
 import com.dicoding.capstones.network.SearchDataItem
 

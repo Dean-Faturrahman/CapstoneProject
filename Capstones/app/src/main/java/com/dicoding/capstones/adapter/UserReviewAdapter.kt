@@ -1,4 +1,4 @@
-package com.dicoding.capstones.adapter.itemhome
+package com.dicoding.capstones.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

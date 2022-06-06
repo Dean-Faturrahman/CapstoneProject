@@ -7,7 +7,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dicoding.capstones.adapter.itemhome.ClassListAdapter
+import com.dicoding.capstones.adapter.ClassListAdapter
 import com.dicoding.capstones.data.ChatListModel
 import com.dicoding.capstones.databinding.ActivityClassListBinding
 import com.dicoding.capstones.helper.Const

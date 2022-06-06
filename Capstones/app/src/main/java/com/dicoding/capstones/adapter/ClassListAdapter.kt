@@ -1,10 +1,9 @@
-package com.dicoding.capstones.adapter.itemhome
+package com.dicoding.capstones.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.dicoding.capstones.data.ItemHome
 import com.dicoding.capstones.databinding.ItemListClassBinding
 import com.dicoding.capstones.network.ClassList
 

@@ -8,10 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dicoding.capstones.R
-import com.dicoding.capstones.adapter.itemhome.ChatAdapter
+import com.dicoding.capstones.adapter.ChatAdapter
 import com.dicoding.capstones.data.ChatListModel
-import com.dicoding.capstones.databinding.FragmentStudentChatBinding
 import com.dicoding.capstones.databinding.FragmentTeacherChatBinding
 import com.dicoding.capstones.helper.Const
 import com.dicoding.capstones.helper.PrefHelper
@@ -77,8 +75,9 @@ class TeacherChatFragment : Fragment() {
 
                             for (snapshot1 in snapshot.children) {
                                 val getTeacherId = snapshot1.child("teacher").child("id").value
+                                val getStatusOrder = snapshot1.child("status").value.toString()
 
-                                if (getTeacherId == sharedPref.getString(Const.PREF_USERID)) {
+                                if (getTeacherId == sharedPref.getString(Const.PREF_USERID) && getStatusOrder == "On Going") {
                                     val getOrderId = snapshot1.key
                                     val getStudentId = snapshot1.child("student").child("id").value
                                     val getStudentName = snapshot1.child("student").child("name").value

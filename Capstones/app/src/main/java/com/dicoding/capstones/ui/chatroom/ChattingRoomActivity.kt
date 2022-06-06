@@ -1,15 +1,13 @@
 package com.dicoding.capstones.ui.chatroom
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dicoding.capstones.adapter.itemhome.MessageAdapter
+import com.dicoding.capstones.adapter.MessageAdapter
 import com.dicoding.capstones.data.MessageModel
 import com.dicoding.capstones.databinding.ActivityChattingRoomBinding
-import com.dicoding.capstones.ui.register.RegisterViewModel
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database

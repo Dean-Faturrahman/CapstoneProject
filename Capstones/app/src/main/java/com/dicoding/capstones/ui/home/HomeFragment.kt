@@ -11,8 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.dicoding.capstones.R
-import com.dicoding.capstones.adapter.itemhome.ListItemAdapter
-import com.dicoding.capstones.adapter.itemhome.ListUserReviewAdapter
+import com.dicoding.capstones.adapter.ListItemAdapter
+import com.dicoding.capstones.adapter.ListUserReviewAdapter
 import com.dicoding.capstones.data.ItemHome
 import com.dicoding.capstones.data.UserReview
 import com.dicoding.capstones.databinding.FragmentHomeBinding

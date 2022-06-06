@@ -2,83 +2,52 @@ package com.dicoding.capstones.ui.editeprofile
 
 import android.annotation.SuppressLint
 import android.app.ProgressDialog
-import android.content.ContentResolver
-import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.core.net.toUri
 import com.bumptech.glide.Glide
 import com.dicoding.capstones.R
 import com.dicoding.capstones.data.UserEditProfileModel
-import com.dicoding.capstones.data.UserRegisterModel
 import com.dicoding.capstones.databinding.ActivityEditProfileBinding
 import com.dicoding.capstones.helper.Const
 import com.dicoding.capstones.helper.PrefHelper
-import com.dicoding.capstones.ui.register.RegisterViewModel
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuthException
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 import com.jakewharton.rxbinding2.widget.RxTextView
-import com.squareup.picasso.Picasso
 import io.reactivex.Observable
 import io.reactivex.functions.Function4
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.asRequestBody
-import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
 
 class EditProfileActivity : AppCompatActivity() {
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityEditProfileBinding
     private val editProfileViewModel by viewModels<EditProfileViewModel>()
     private lateinit var sharedPref: PrefHelper
-    private lateinit var auth : FirebaseAuth
-    private lateinit var imageUri : Uri
-    private lateinit var databaseReference: DatabaseReference
-    private lateinit var storageReference: StorageReference
+    private var imageUri: Uri? = null
+    private var downloadUrl: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-     binding = ActivityEditProfileBinding.inflate(layoutInflater)
-     setContentView(binding.root)
-
-        auth = FirebaseAuth.getInstance()
-
-        val user = auth.currentUser?.uid
-        databaseReference = FirebaseDatabase.getInstance().getReference("Users")
+        binding = ActivityEditProfileBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         sharedPref = PrefHelper(this)
 
         actionBarConfig()
         setDataForm()
-        editObserver()
         errorObserver()
         setupAction()
         validationForm()
-        datePicker()
-        }
+    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
@@ -97,14 +66,14 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
     @SuppressLint("CheckResult")
-    private fun validationForm(){
+    private fun validationForm() {
 
         val nameStream = RxTextView.textChanges(binding.inputNama)
             .skipInitialValue()
             .map { name ->
                 name.length < 2
             }
-        nameStream.subscribe{
+        nameStream.subscribe {
             showNameAlert(it)
         }
 
@@ -145,8 +114,8 @@ class EditProfileActivity : AppCompatActivity() {
             passwordConfirmationStream,
             phoneStream,
             nameStream,
-            Function4 {passwordInvalid: Boolean, passwordConfirmationInvalid: Boolean, phoneInvalid: Boolean, inputnameInvalid: Boolean ->
-                 !passwordInvalid && !passwordConfirmationInvalid && !phoneInvalid && !inputnameInvalid
+            Function4 { passwordInvalid: Boolean, passwordConfirmationInvalid: Boolean, phoneInvalid: Boolean, inputnameInvalid: Boolean ->
+                !passwordInvalid && !passwordConfirmationInvalid && !phoneInvalid && !inputnameInvalid
             })
         invalidFieldsStream.subscribe { isValid ->
             if (isValid) {
@@ -160,30 +129,34 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
     private fun showPasswordMinimalAlert(isNotValid: Boolean) {
-        binding.inputPassword.error = if (isNotValid) getString(R.string.password_not_valid) else null
+        binding.inputPassword.error =
+            if (isNotValid) getString(R.string.password_not_valid) else null
     }
 
     private fun showPasswordConfirmationAlert(isNotValid: Boolean) {
-        binding.inputPassConf.error = if (isNotValid) getString(R.string.password_not_same) else null
+        binding.inputPassConf.error =
+            if (isNotValid) getString(R.string.password_not_same) else null
     }
+
     private fun showPhoneAlert(isNotValid: Boolean) {
         binding.inputNumber.error = if (isNotValid) getString(R.string.not_phone) else null
     }
+
     private fun showNameAlert(isNotValid: Boolean) {
         binding.inputNama.error = if (isNotValid) getString(R.string.validate_name) else null
     }
 
-    private fun datePicker() {
-        val today = Calendar.getInstance()
-        binding.datePicker.init(today.get(Calendar.YEAR), today.get(Calendar.MONTH),
-            today.get(Calendar.DAY_OF_MONTH)
-        ) { _, year, month, day ->
-            val month = month + 1
-            val msg = "$year-$month-$day"
-            binding.tvDate.text = msg
+    private fun datePicker(y: Int?, m: Int?, d: Int?) {
+        if (m != null && y != null && d != null) {
+            binding.datePicker.init(
+                y, m - 1 , d
+            ) { _, year, month, day ->
+                val month = month + 1
+                val msg = "$year-$month-$day"
+                binding.tvDate.text = msg
+            }
         }
     }
-
 
 
     private fun setEditData(): UserEditProfileModel {
@@ -194,7 +167,7 @@ class EditProfileActivity : AppCompatActivity() {
         }
         return UserEditProfileModel(
             sharedPref.getString(Const.PREF_USERID)!!,
-            "https://storage.googleapis.com/cobacobaa/capstone/user.png",
+            downloadUrl.toString(),
             binding.inputPassword.text.toString(),
             binding.inputNama.text.toString(),
             binding.inputNumber.text.toString(),
@@ -203,25 +176,21 @@ class EditProfileActivity : AppCompatActivity() {
         )
     }
 
-
-
     private fun editService() {
-
-        if(binding.inputPassword.text.isNotEmpty()){
+        if (binding.inputPassword.text.isNotEmpty()) {
             editProfileViewModel.editProfileWithPass(
                 sharedPref.getString(Const.PREF_USERID)!!,
-
-                "https://storage.googleapis.com/cobacobaa/capstone/user.png",
+                setEditData().photo.toString(),
                 setEditData().userPassword.toString(),
                 setEditData().userName.toString(),
                 setEditData().userPhone.toString(),
                 setEditData().userDob.toString(),
                 setEditData().userGender.toString(),
             )
-        }else{
+        } else {
             editProfileViewModel.editProfile(
                 sharedPref.getString(Const.PREF_USERID)!!,
-                "https://storage.googleapis.com/cobacobaa/capstone/user.png",
+                setEditData().photo.toString(),
                 setEditData().userName.toString(),
                 setEditData().userPhone.toString(),
                 setEditData().userDob.toString(),
@@ -255,45 +224,67 @@ class EditProfileActivity : AppCompatActivity() {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
-    private fun setupAction(){
+    private fun setupAction() {
         binding.button.setOnClickListener {
-            uploadImage()
-            editService()
+            if (imageUri.toString() != "null") {
+                uploadImage()
+            } else {
+                editService()
+                editObserver()
+            }
         }
 
-        binding.btnEditPhoto.setOnClickListener{
+        binding.btnEditPhoto.setOnClickListener {
             selectImage()
         }
 
-        binding.imgItemPhoto.setOnClickListener{
+        binding.imgItemPhoto.setOnClickListener {
             selectImage()
         }
     }
 
-    private fun uploadImage(){
-        val progressBar = ProgressDialog(this)
-        progressBar.setMessage("Save Data...")
-        progressBar.setCancelable(false)
-        progressBar.show()
+    private fun uploadImage() {
+        if (imageUri != null) {
+            val progressBar = ProgressDialog(this)
+            progressBar.setMessage("Save Data...")
+            progressBar.setCancelable(false)
+            progressBar.show()
 
-        val formatDate  = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.getDefault())
-        val now = Date()
-        val fileName = formatDate.format(now)
-        val storageReference = FirebaseStorage.getInstance().getReference("images/$fileName")
+            val formatDate = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.getDefault())
+            val now = Date()
+            val fileName = formatDate.format(now)
+            val storageReference = FirebaseStorage.getInstance().getReference("images/$fileName")
 
-        storageReference.putFile(imageUri).addOnSuccessListener {
-            binding.imgItemPhoto.setImageURI(null)
-            Toast.makeText(this@EditProfileActivity, "Berhasil diubah", Toast.LENGTH_SHORT).show()
-            if (progressBar.isShowing) progressBar.dismiss()
+            storageReference.putFile(imageUri!!).continueWithTask { task ->
+                if (!task.isSuccessful) {
+                    task.exception?.let {
+                        throw it
+                    }
+                }
+                storageReference.downloadUrl
 
-        }.addOnFailureListener{
-            if (progressBar.isShowing) progressBar.dismiss()
-            Toast.makeText(this@EditProfileActivity, "Failed", Toast.LENGTH_SHORT).show()
+            }.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    downloadUrl = task.result
+                }
 
+            }.addOnSuccessListener {
+                binding.imgItemPhoto.setImageURI(null)
+                editService()
+                Toast.makeText(this@EditProfileActivity, "Berhasil diubah", Toast.LENGTH_SHORT)
+                    .show()
+                if (progressBar.isShowing) progressBar.dismiss()
+                editObserver()
+
+            }.addOnFailureListener {
+                if (progressBar.isShowing) progressBar.dismiss()
+                Toast.makeText(this@EditProfileActivity, "Failed", Toast.LENGTH_SHORT).show()
+            }
         }
     }
+
     private fun selectImage() {
-       val intent = Intent()
+        val intent = Intent()
         intent.type = "image/*"
         intent.action = Intent.ACTION_GET_CONTENT
         startActivityForResult(intent, 100)
@@ -302,13 +293,13 @@ class EditProfileActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == 100 && resultCode == RESULT_OK){
+        if (requestCode == 100 && resultCode == RESULT_OK) {
             imageUri = data?.data!!
             binding.imgItemPhoto.setImageURI(imageUri)
         }
     }
 
-    private fun setDataForm(){
+    private fun setDataForm() {
         val name = intent.getStringExtra(EXTRA_NAME)
         val hp = intent.getStringExtra(EXTRA_NOMOR)
         val gender = intent.getStringExtra(EXTRA_GENDER)
@@ -316,22 +307,32 @@ class EditProfileActivity : AppCompatActivity() {
         val date = intent.getStringExtra(EXTRA_DATE)
         val pass = intent.getStringExtra(EXTRA_PASS)
 
+        val sep = "-"
+        val arrDate = date?.split(sep)
+        Log.e("arrDate", arrDate.toString())
+
         binding.inputPassword.setText(pass)
         binding.inputNama.setText(name)
         binding.inputNumber.setText(hp)
-        binding.tvDate.setText(date)
+        binding.tvDate.text = date
+        datePicker(arrDate?.get(0)?.toInt(), arrDate?.get(1)?.toInt(), arrDate?.get(2)?.toInt())
+        downloadUrl = photo.toString().toUri()
+
+        when (gender) {
+            "Female" -> binding.radioGroup.check(binding.radio2.id)
+            else -> binding.radioGroup.check(binding.radio1.id)
+        }
         Glide.with(this)
             .load(photo)
             .into(binding.imgItemPhoto)
     }
 
-    companion object{
-        const val EXTRA_USERID = "user_id"
+    companion object {
         const val EXTRA_PHOTO = "extra_photo"
-        const val EXTRA_NAME  = "extra_name"
+        const val EXTRA_NAME = "extra_name"
         const val EXTRA_NOMOR = "extra_nomor"
         const val EXTRA_GENDER = "extra_gender"
-        const val EXTRA_DATE = "extra_gender"
+        const val EXTRA_DATE = "extra_date"
         const val EXTRA_PASS = "extra_pass"
     }
 }

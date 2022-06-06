@@ -9,9 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.capstones.ui.chatroom.ChattingRoomActivity
-import com.dicoding.capstones.adapter.itemhome.ChatAdapter
+import com.dicoding.capstones.adapter.ChatAdapter
 import com.dicoding.capstones.data.ChatListModel
-import com.dicoding.capstones.data.MessageModel
 import com.dicoding.capstones.databinding.FragmentStudentChatBinding
 import com.dicoding.capstones.helper.Const
 import com.dicoding.capstones.helper.PrefHelper

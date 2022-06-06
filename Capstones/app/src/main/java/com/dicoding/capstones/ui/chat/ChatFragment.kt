@@ -4,12 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.dicoding.capstones.R
-import com.dicoding.capstones.adapter.itemhome.SectionsPagerAdapter
+import com.dicoding.capstones.adapter.SectionsPagerAdapter
 import com.dicoding.capstones.databinding.FragmentChatBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -27,17 +26,9 @@ class ChatFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val notificationsViewModel =
-            ViewModelProvider(this).get(ChatViewModel::class.java)
-
         _binding = FragmentChatBinding.inflate(inflater, container, false)
-        val root: View = binding.root
 
-//        val textView: TextView = binding.textChat
-//        notificationsViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
-//        }
-        return root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

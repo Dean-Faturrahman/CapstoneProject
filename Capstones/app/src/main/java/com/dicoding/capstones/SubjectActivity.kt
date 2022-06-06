@@ -2,7 +2,7 @@ package com.dicoding.capstones
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.dicoding.capstones.adapter.itemhome.ListItemSubjectAdapter
+import com.dicoding.capstones.adapter.ListItemSubjectAdapter
 import com.dicoding.capstones.data.ItemSubject
 import com.dicoding.capstones.databinding.ActivitySubjectBinding
 

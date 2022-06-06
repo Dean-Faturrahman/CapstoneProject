@@ -1,10 +1,8 @@
-package com.dicoding.capstones.adapter.itemhome
+package com.dicoding.capstones.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.capstones.R
 import com.dicoding.capstones.data.MessageModel
