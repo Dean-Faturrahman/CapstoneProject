@@ -96,4 +96,25 @@ interface ApiService {
         @Field("subject") subject: String,
         @Field("score") score: Int,
     ): Call<UpgradeUserResponse>
+
+    @FormUrlEncoded
+    @POST("predict")
+    fun getPredictions(
+        @Field("userid") userId: String?
+    ): Call<PredictionsResponse>
+
+    @FormUrlEncoded
+    @POST("updatesuggest.php")
+    fun updateSuggest(
+        @Field("userid") userId: String?,
+        @Field("suggest1") suggest1: String?,
+        @Field("suggest2") suggest2: String?,
+        @Field("suggest3") suggest3: String?,
+    ): Call<PredictionsResponse>
+
+    @FormUrlEncoded
+    @POST("suggest.php")
+    fun getSuggest(
+        @Field("userid") userId: String?
+    ): Call<SuggestionsResponse>
 }

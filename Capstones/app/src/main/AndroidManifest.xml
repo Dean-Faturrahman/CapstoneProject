@@ -32,9 +32,6 @@
             android:exported="false"
             android:label="@string/title_activity_home2" />
         <activity
-            android:name=".SubjectActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.upgrade.FormUpgradeActivity"
             android:exported="false" />
         <activity

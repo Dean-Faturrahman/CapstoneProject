@@ -7,50 +7,52 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.capstones.R
 import com.dicoding.capstones.adapter.SearchListAdapter
 import com.dicoding.capstones.databinding.FragmentSearchBinding
+import com.dicoding.capstones.helper.Const
+import com.dicoding.capstones.helper.PrefHelper
 import com.dicoding.capstones.network.SearchDataItem
 
 class SearchFragment : Fragment() {
 
     private var _binding: FragmentSearchBinding? = null
-    private val searchViewModel by viewModels<SearchViewModel>()
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
+    private val searchViewModel by viewModels<SearchViewModel>()
+    private lateinit var sharedPref: PrefHelper
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val dashboardViewModel =
-            ViewModelProvider(this).get(SearchViewModel::class.java)
-
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-
-
-//        val textView: TextView = binding.textSearch
-//        dashboardViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
-//        }
-        return root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        sharedPref = PrefHelper(requireActivity())
+
+//        errorObserver()
+        searchViewModel.isLoading.observe(requireActivity()) { showLoading(it)}
+        searchService()
+        getPredictions(sharedPref.getString(Const.PREF_USERID))
+        getSuggestions()
+    }
+
+    private fun searchService() {
         val searchManager = context?.getSystemService(Context.SEARCH_SERVICE) as SearchManager
         searchViewModel.listUser.observe(viewLifecycleOwner) { users ->
             setUser(users)
             binding.searchView.clearFocus()
         }
+
         binding.searchView.setSearchableInfo(searchManager.getSearchableInfo(requireActivity().componentName))
         binding.searchView.queryHint = resources.getString(R.string.search_hint)
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
@@ -60,6 +62,7 @@ class SearchFragment : Fragment() {
                 searchUserData(p0!!)
                 return true
             }
+
             override fun onQueryTextChange(p0: String?): Boolean {
                 return false
             }
@@ -69,7 +72,22 @@ class SearchFragment : Fragment() {
     private fun searchUserData(q: String){
         searchViewModel.searchDataUser(q)
         searchViewModel.listUser.observe(this) { users -> setUser(users) }
-        searchViewModel.isLoading.observe(this) { showLoading(it)}
+    }
+
+    private fun getPredictions(userId: String?) {
+        searchViewModel.getPredictions(userId)
+    }
+
+    private fun getSuggestions() {
+        searchViewModel.suggestions.observe(requireActivity()) {
+            setUser(it)
+        }
+    }
+
+    private fun errorObserver() {
+        searchViewModel.errorMessage.observe(requireActivity()) {
+            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun showLoading(isLoading: Boolean) {
@@ -94,6 +112,13 @@ class SearchFragment : Fragment() {
 
         val layoutManager = LinearLayoutManager(context)
         binding.rvListGuru.layoutManager = layoutManager
+
+        binding.rvListGuru.addItemDecoration(
+            DividerItemDecoration(
+                requireContext(),
+                LinearLayoutManager.VERTICAL
+            )
+        )
     }
 
     override fun onDestroyView() {

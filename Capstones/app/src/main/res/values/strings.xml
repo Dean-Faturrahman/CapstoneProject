@@ -64,6 +64,7 @@
     <string name="password_not_same">Password tidak sama!</string>
 
     <string-array name="data_item_name">
+        <item>Lainnya</item>
         <item>Matematika</item>
         <item>Biologi</item>
         <item>Bahasa Inggris</item>
@@ -71,10 +72,14 @@
         <item>Akuntasi</item>
         <item>Kimia</item>
         <item>Bahasa Indonesia</item>
-        <item>Lainnya</item>
+        <item>Sosiologi</item>
+        <item>Geografi</item>
+        <item>Ekonomi</item>
+        <item>Seni</item>
     </string-array>
 
     <string-array name="data_item_photo">
+        <item>@drawable/others</item>
         <item>@drawable/matematika</item>
         <item>@drawable/biologi</item>
         <item>@drawable/eng</item>
@@ -82,7 +87,10 @@
         <item>@drawable/akuntan</item>
         <item>@drawable/kimia</item>
         <item>@drawable/indonesia</item>
-        <item>@drawable/others</item>
+        <item>@drawable/indonesia</item>
+        <item>@drawable/indonesia</item>
+        <item>@drawable/indonesia</item>
+        <item>@drawable/indonesia</item>
     </string-array>
 
     <string-array name="data_user_photo">
