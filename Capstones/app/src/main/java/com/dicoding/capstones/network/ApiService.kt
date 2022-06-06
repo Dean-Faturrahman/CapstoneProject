@@ -86,4 +86,14 @@ interface ApiService {
     fun completeOrder(
         @Field("orderid") orderId: String?,
     ): Call<OrderCompleteResponse>
+
+    @FormUrlEncoded
+    @POST("verif.php")
+    fun upgradeUser(
+        @Field("userid") userId: String?,
+        @Field("idcard") idCard: String,
+        @Field("teachexp") teachExp: Int,
+        @Field("subject") subject: String,
+        @Field("score") score: Int,
+    ): Call<UpgradeUserResponse>
 }
