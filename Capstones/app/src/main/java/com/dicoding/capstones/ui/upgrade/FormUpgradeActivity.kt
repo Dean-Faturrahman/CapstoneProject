@@ -11,7 +11,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.MediaStore.Images
-import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -19,7 +18,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.FileProvider
 import com.dicoding.capstones.R
 import com.dicoding.capstones.data.UpgradeModel
 import com.dicoding.capstones.databinding.ActivityFormUpgradeBinding
@@ -30,7 +28,6 @@ import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.Observable
 import io.reactivex.functions.Function3
 import java.io.ByteArrayOutputStream
-import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -38,7 +35,7 @@ import java.util.*
 class FormUpgradeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityFormUpgradeBinding
-    private val upgradeUserViewModel by viewModels<UpgradeUserModel>()
+    private val upgradeUserViewModel by viewModels<UpgradeUserViewModel>()
     private lateinit var sharedPref: PrefHelper
     private var imageUri: Uri? = null
     private var downloadUrl: Uri? = null

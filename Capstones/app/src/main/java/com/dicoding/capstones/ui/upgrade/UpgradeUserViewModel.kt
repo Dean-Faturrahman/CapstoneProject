@@ -11,7 +11,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class UpgradeUserModel: ViewModel() {
+class UpgradeUserViewModel: ViewModel() {
     private val _upgradeUser = MutableLiveData<UpgradeUserResponse>()
     val upgrade: LiveData<UpgradeUserResponse> = _upgradeUser
 
