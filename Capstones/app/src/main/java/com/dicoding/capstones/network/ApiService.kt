@@ -68,4 +68,14 @@ interface ApiService {
         @Field("dob") userDob: String,
         @Field("gender") userGender: String,
     ): Call<EditProfileResponse>
+
+    @FormUrlEncoded
+    @POST("verif.php")
+    fun upgradeUser(
+        @Field("userid") userId: String?,
+        @Field("idcard") idCard: String,
+        @Field("teachexp") teachExp: Int,
+        @Field("subject") subject: String,
+        @Field("score") score: Int,
+    ): Call<UpgradeUserResponse>
 }

@@ -3,6 +3,12 @@
     package="com.dicoding.capstones">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
 
     <application
         android:allowBackup="true"
@@ -29,7 +35,7 @@
             android:name=".SubjectActivity"
             android:exported="false" />
         <activity
-            android:name=".FormUpgradeActivity"
+            android:name=".ui.upgrade.FormUpgradeActivity"
             android:exported="false" />
         <activity
             android:name=".ui.register.RegisterActivity"

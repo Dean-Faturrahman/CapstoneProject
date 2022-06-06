@@ -19,6 +19,8 @@ import com.dicoding.capstones.databinding.FragmentHomeBinding
 import com.dicoding.capstones.helper.Const
 import com.dicoding.capstones.helper.PrefHelper
 import com.dicoding.capstones.ui.classlist.ClassListActivity
+import com.dicoding.capstones.ui.editeprofile.EditProfileActivity
+import com.dicoding.capstones.ui.upgrade.FormUpgradeActivity
 
 class HomeFragment : Fragment() {
 
@@ -37,7 +39,15 @@ class HomeFragment : Fragment() {
         val root: View = binding.root
 
         showRecyclerList()
+        action()
         return root
+    }
+
+    private fun action() {
+        binding.btnUpgrade.setOnClickListener{
+            val toUpgradeUser = Intent(requireContext(), FormUpgradeActivity::class.java)
+            startActivity(toUpgradeUser)
+        }
     }
 
     @SuppressLint("SetTextI18n")
