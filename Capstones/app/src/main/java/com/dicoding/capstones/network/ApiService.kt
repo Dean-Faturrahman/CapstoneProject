@@ -68,6 +68,8 @@ interface ApiService {
         @Field("dob") userDob: String,
         @Field("gender") userGender: String,
     ): Call<EditProfileResponse>
+
+    @FormUrlEncoded
     @POST("order.php")
     fun createOrder(
         @Field("classid") classId: String?,
