@@ -136,20 +136,6 @@ class HomeFragment : Fragment() {
             return listItem
         }
 
-//    private val listItemReview: ArrayList<UserReview>
-//        get() {
-//            val dataName = resources.getStringArray(R.array.data_user_name)
-//            val dataPhoto = resources.obtainTypedArray(R.array.data_user_photo)
-//            val dataReview = resources.getStringArray(R.array.data_user_review)
-//            val listItem = ArrayList<UserReview>()
-//            for (i in dataName.indices) {
-//                val itemReview =
-//                    UserReview(dataPhoto.getResourceId(i, -1), dataName[i], dataReview[i])
-//                listItem.add(itemReview)
-//            }
-//            return listItem
-//        }
-
     private fun setRating(rating : List<RatingDataItem>){
         val listRating =ArrayList<RatingDataItem>()
 
@@ -182,9 +168,6 @@ class HomeFragment : Fragment() {
                 }
             }
         })
-
-//        val listItemReviewAdapter = ListUserReviewAdapter(listRating)
-//        binding.rvReview.adapter = listItemReviewAdapter
     }
 
     private fun toClass(data: String?) {

@@ -42,17 +42,24 @@
             android:id="@+id/review_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:text="Pengajarnya sangat friendly"
-            card_view:layout_constraintStart_toStartOf="@+id/rating"
+            card_view:layout_constraintStart_toStartOf="@+id/name_user"
             card_view:layout_constraintTop_toBottomOf="@+id/rating" />
 
-        <TextView
+        <RatingBar
             android:id="@+id/rating"
+            style="@style/Widget.AppCompat.RatingBar.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            card_view:layout_constraintStart_toStartOf="@+id/name_user"
-            card_view:layout_constraintTop_toBottomOf="@+id/name_user" />
+            android:numStars="5"
+            android:isIndicator="true"
+            android:stepSize="1"
+            android:progressBackgroundTint="@null"
+            android:secondaryProgressTint="@color/star_color"
+            android:progressTint="@color/star_color"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintTop_toTopOf="@+id/name_user" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

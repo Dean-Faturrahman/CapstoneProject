@@ -21,7 +21,8 @@ class RatingAdapter(private val listItemRating: ArrayList<RatingDataItem>) : Rec
             .load(photo)
             .into(holder.binding.imgItemPhoto)
         holder.binding.nameUser.text = username
-        holder.binding.rating.text = order_rating
+//        holder.binding.rating.isEnabled = false
+        holder.binding.rating.rating = order_rating.toFloat()
         holder.binding.reviewUser.text = order_ratingdesc
     }
 

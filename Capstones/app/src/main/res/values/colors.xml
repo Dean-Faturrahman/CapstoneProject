@@ -21,7 +21,7 @@
     <color name="chatting_purple">#AD7ED2</color>
     <color name="editText_chatting">#D6D0D0</color>
     <color name="editText_cardpp">#827E6194</color>
-
-
+    <color name="star_color">#ffe234</color>
+    <color name="bg_star_color">#9F9E95</color>
 
 </resources>

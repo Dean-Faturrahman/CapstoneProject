@@ -124,5 +124,11 @@ interface ApiService {
     fun getRating(
     ): Call<RatingResponse>
 
-
+    @FormUrlEncoded
+    @POST("orderrating.php")
+    fun orderRating(
+        @Field("orderid") orderId: String?,
+        @Field("orderrating") orderRating: Float?,
+        @Field("orderdesc") orderDesc: String?
+    ): Call<OrderRatingResponse>
 }
