@@ -39,7 +39,7 @@
         android:layout_marginTop="8dp"
         android:fontFamily="@font/pregular"
         android:gravity="center_horizontal"
-        android:text="@string/desc"
+        android:text="@string/desc_menu_1"
         android:textColor="@color/desc"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@+id/titleMenu1"
@@ -111,8 +111,8 @@
 
     <androidx.constraintlayout.utils.widget.ImageFilterView
         android:id="@+id/menu2"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
         app:altSrc="@drawable/ic_circle_full_24"
         app:layout_constraintBottom_toBottomOf="@+id/menu1"
         app:layout_constraintEnd_toStartOf="@+id/menu3"

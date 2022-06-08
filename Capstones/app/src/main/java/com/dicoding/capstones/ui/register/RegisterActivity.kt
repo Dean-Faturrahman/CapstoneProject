@@ -1,5 +1,7 @@
 package com.dicoding.capstones.ui.register
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
@@ -29,6 +31,7 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        playAnimation()
         validationForm()
         setupView()
         setupAction()
@@ -210,6 +213,47 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun toLogin() {
         finish()
+    }
+
+    private fun playAnimation() {
+        ObjectAnimator.ofFloat(binding.imageView2, View.TRANSLATION_X, -30f, 30f).apply {
+            duration = 6000
+            repeatCount = ObjectAnimator.INFINITE
+            repeatMode = ObjectAnimator.REVERSE
+        }.start()
+        val img = ObjectAnimator.ofFloat(binding.imageView2, View.TRANSLATION_X, -30f, 30f).setDuration(600)
+        val title = ObjectAnimator.ofFloat(binding.textView, View.ALPHA, 1f).setDuration(300)
+        val stittle = ObjectAnimator.ofFloat(binding.textView2, View.ALPHA, 1f).setDuration(300)
+        val txtname = ObjectAnimator.ofFloat(binding.textView3, View.ALPHA, 1f).setDuration(300)
+        val name = ObjectAnimator.ofFloat(binding.inputNama, View.ALPHA, 1f).setDuration(300)
+        val txtemail = ObjectAnimator.ofFloat(binding.txtemail, View.ALPHA, 1f).setDuration(300)
+        val email = ObjectAnimator.ofFloat(binding.inputEmail, View.ALPHA, 1f).setDuration(300)
+        val txtpass = ObjectAnimator.ofFloat(binding.txtPass, View.ALPHA, 1f).setDuration(300)
+        val pass = ObjectAnimator.ofFloat(binding.inputPassword, View.ALPHA, 1f).setDuration(300)
+        val txtpassconf = ObjectAnimator.ofFloat(binding.txtPassKonfir, View.ALPHA, 1f).setDuration(300)
+        val passconf = ObjectAnimator.ofFloat(binding.inputPassConf, View.ALPHA, 1f).setDuration(300)
+        val txtdate = ObjectAnimator.ofFloat(binding.txtDate, View.ALPHA, 1f).setDuration(300)
+        val date = ObjectAnimator.ofFloat(binding.datePicker, View.ALPHA, 1f).setDuration(300)
+        val txtgen = ObjectAnimator.ofFloat(binding.txtGender, View.ALPHA, 1f).setDuration(300)
+        val gen1 = ObjectAnimator.ofFloat(binding.radio1, View.ALPHA, 1f).setDuration(300)
+        val gen2 = ObjectAnimator.ofFloat(binding.radio2, View.ALPHA, 1f).setDuration(300)
+        val txtnumber = ObjectAnimator.ofFloat(binding.txtNumber, View.ALPHA, 1f).setDuration(300)
+        val number = ObjectAnimator.ofFloat(binding.inputNumber, View.ALPHA, 1f).setDuration(300)
+        val txtinters = ObjectAnimator.ofFloat(binding.txtInterest, View.ALPHA, 1f).setDuration(300)
+        val buttonlogin = ObjectAnimator.ofFloat(binding.button, View.ALPHA, 1f).setDuration(300)
+        val txt4 = ObjectAnimator.ofFloat(binding.textView4, View.ALPHA, 1f).setDuration(300)
+        val login = ObjectAnimator.ofFloat(binding.tvToLogin, View.ALPHA, 1f).setDuration(300)
+
+
+        val together = AnimatorSet().apply {
+            playTogether( buttonlogin, gen1, gen2, txt4, login)
+        }
+
+        AnimatorSet().apply {
+            playSequentially(img,title,stittle, txtname, name, txtemail, email, txtpass, pass, txtpassconf,
+                passconf, txtdate, date, txtgen, txtnumber, number, txtinters, together)
+            start()
+        }
     }
 
     private fun showLoading(isLoading: Boolean) {

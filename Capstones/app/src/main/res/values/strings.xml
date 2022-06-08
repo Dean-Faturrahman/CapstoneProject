@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Capstones</string>
     <string name="title_menu_1">Welcome</string>
-    <string name="desc_menu_1">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "</string>
+    <string name="desc_menu_1">Aplikasi ini menyediakan pengajar dari pelajaran yang kamu inginkan, selain itu kamu juga dapat berkomunikasi langsung dengan guru memalui fitur chat loh! Ayo tunggu apalagi daftarkan dirimu sekarang.</string>
     <string name="learn_now">Mulai Belajar</string>
-    <string name="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
+    <string name="desc">Selamat bergabung dengan aplikasi TeachNGo belajar kamu akan lebih menyenangkan, pengajar akan membantu kamu dalam menjelaskan pelajaran yang kamu inginkan belajar dengan TeachNGo sangat menyenangkan.</string>
     <string name="title_menu_2">Everyone can teach Everyone can learn</string>
     <string name="login">Login</string>
     <string name="desclogin">Masuk untuk melanjutkan</string>

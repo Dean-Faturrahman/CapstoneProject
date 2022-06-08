@@ -1,5 +1,7 @@
 package com.dicoding.capstones.ui.login
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
@@ -40,7 +42,9 @@ class LoginActivity : AppCompatActivity() {
 
         sharedPref = PrefHelper(this)
 
+
         validationForm()
+        playAnimation()
         setupView()
         setupAction()
         loginObserver()
@@ -174,6 +178,35 @@ class LoginActivity : AppCompatActivity() {
         startActivity(toHome)
         finish()
     }
+
+    private fun playAnimation() {
+        ObjectAnimator.ofFloat(binding.imageView2, View.TRANSLATION_X, -30f, 30f).apply {
+            duration = 6000
+            repeatCount = ObjectAnimator.INFINITE
+            repeatMode = ObjectAnimator.REVERSE
+        }.start()
+        val img = ObjectAnimator.ofFloat(binding.imageView2, View.TRANSLATION_X, -30f, 30f).setDuration(600)
+        val title = ObjectAnimator.ofFloat(binding.textView, View.ALPHA, 1f).setDuration(300)
+        val stittle = ObjectAnimator.ofFloat(binding.textView2, View.ALPHA, 1f).setDuration(300)
+        val txtemail = ObjectAnimator.ofFloat(binding.textView3, View.ALPHA, 1f).setDuration(300)
+        val email = ObjectAnimator.ofFloat(binding.editEmail, View.ALPHA, 1f).setDuration(300)
+        val txtpass = ObjectAnimator.ofFloat(binding.txtPass, View.ALPHA, 1f).setDuration(300)
+        val pass = ObjectAnimator.ofFloat(binding.editPass, View.ALPHA, 1f).setDuration(400)
+        val buttonlogin = ObjectAnimator.ofFloat(binding.button, View.ALPHA, 1f).setDuration(400)
+        val txt4 = ObjectAnimator.ofFloat(binding.textView4, View.ALPHA, 1f).setDuration(400)
+        val daftar = ObjectAnimator.ofFloat(binding.daftar, View.ALPHA, 1f).setDuration(400)
+
+
+        val together = AnimatorSet().apply {
+            playTogether( buttonlogin,txt4, daftar)
+        }
+
+        AnimatorSet().apply {
+            playSequentially(img,title,stittle, txtemail, email, txtpass, pass, together)
+            start()
+        }
+    }
+
 
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
