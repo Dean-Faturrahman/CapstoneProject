@@ -58,10 +58,6 @@ class HomeFragment : Fragment() {
         homeViewModel.getHomeData(sharedPref.getString(Const.PREF_USEREMAIL))
         homeViewModel.getRatingData()
 
-        homeViewModel.rating.observe(viewLifecycleOwner){
-            setRating(it)
-        }
-
         homeViewModel.home.observe(viewLifecycleOwner) {
             Glide.with(requireContext())
                 .load(it[0].userPhoto)
@@ -72,6 +68,10 @@ class HomeFragment : Fragment() {
             if (it[0].userRole == "Teacher") {
                 binding.btnUpgrade.isVisible = false
             }
+        }
+
+        homeViewModel.rating.observe(viewLifecycleOwner){
+            setRating(it)
         }
     }
 
