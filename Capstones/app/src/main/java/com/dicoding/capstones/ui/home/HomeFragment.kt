@@ -16,16 +16,18 @@ import com.bumptech.glide.Glide
 import com.dicoding.capstones.R
 import com.dicoding.capstones.adapter.ListItemAdapter
 import com.dicoding.capstones.adapter.ListItemSubjectAdapter
-import com.dicoding.capstones.adapter.ListUserReviewAdapter
+import com.dicoding.capstones.adapter.RatingAdapter
 import com.dicoding.capstones.data.ItemHome
 import com.dicoding.capstones.data.ItemSubject
-import com.dicoding.capstones.data.UserReview
 import com.dicoding.capstones.databinding.FragmentHomeBinding
 import com.dicoding.capstones.helper.Const
 import com.dicoding.capstones.helper.PrefHelper
+import com.dicoding.capstones.network.RatingDataItem
 import com.dicoding.capstones.ui.classlist.ClassListActivity
 import com.dicoding.capstones.ui.upgrade.FormUpgradeActivity
 import com.google.android.material.bottomsheet.BottomSheetDialog
+
+
 
 class HomeFragment : Fragment() {
 
@@ -54,6 +56,11 @@ class HomeFragment : Fragment() {
             ViewModelProvider(this).get(HomeViewModel::class.java)
 
         homeViewModel.getHomeData(sharedPref.getString(Const.PREF_USEREMAIL))
+        homeViewModel.getRatingData()
+
+        homeViewModel.rating.observe(viewLifecycleOwner){
+            setRating(it)
+        }
 
         homeViewModel.home.observe(viewLifecycleOwner) {
             Glide.with(requireContext())
@@ -129,19 +136,39 @@ class HomeFragment : Fragment() {
             return listItem
         }
 
-    private val listItemReview: ArrayList<UserReview>
-        get() {
-            val dataName = resources.getStringArray(R.array.data_user_name)
-            val dataPhoto = resources.obtainTypedArray(R.array.data_user_photo)
-            val dataReview = resources.getStringArray(R.array.data_user_review)
-            val listItem = ArrayList<UserReview>()
-            for (i in dataName.indices) {
-                val itemReview =
-                    UserReview(dataPhoto.getResourceId(i, -1), dataName[i], dataReview[i])
-                listItem.add(itemReview)
-            }
-            return listItem
+//    private val listItemReview: ArrayList<UserReview>
+//        get() {
+//            val dataName = resources.getStringArray(R.array.data_user_name)
+//            val dataPhoto = resources.obtainTypedArray(R.array.data_user_photo)
+//            val dataReview = resources.getStringArray(R.array.data_user_review)
+//            val listItem = ArrayList<UserReview>()
+//            for (i in dataName.indices) {
+//                val itemReview =
+//                    UserReview(dataPhoto.getResourceId(i, -1), dataName[i], dataReview[i])
+//                listItem.add(itemReview)
+//            }
+//            return listItem
+//        }
+
+    private fun setRating(rating : List<RatingDataItem>){
+        val listRating =ArrayList<RatingDataItem>()
+
+        for (i in rating){
+            val ratingUser = RatingDataItem(
+                i.userPhoto,
+                i.userName,
+                i.orderRating,
+                i.orderRatingDesc
+            )
+            listRating.add(ratingUser)
         }
+
+        val adapter = RatingAdapter(listRating)
+        binding.rvReview.adapter = adapter
+
+        val layoutManager = LinearLayoutManager(context)
+        binding.rvReview.layoutManager = layoutManager
+    }
 
     private fun showRecyclerList() {
         val listItemHomeAdapter = ListItemAdapter(listItemHome)
@@ -156,8 +183,8 @@ class HomeFragment : Fragment() {
             }
         })
 
-        val listItemReviewAdapter = ListUserReviewAdapter(listItemReview)
-        binding.rvReview.adapter = listItemReviewAdapter
+//        val listItemReviewAdapter = ListUserReviewAdapter(listRating)
+//        binding.rvReview.adapter = listItemReviewAdapter
     }
 
     private fun toClass(data: String?) {

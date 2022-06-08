@@ -119,4 +119,11 @@ interface ApiService {
     fun getSuggest(
         @Field("userid") userId: String?
     ): Call<SuggestionsResponse>
+
+     @FormUrlEncoded
+    @POST("showrating.php")
+    fun getRating(
+    ): Call<RatingResponse>
+
+
 }
