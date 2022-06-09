@@ -117,6 +117,19 @@ class ChattingRoomActivity : AppCompatActivity() {
             dialog.dismiss()
         }
 
+        butSkip.setOnClickListener {
+            chattingRoomViewModel.completeOrder(orderId)
+            chattingRoomViewModel.orderComplete.observe(this) {
+                if (it.status == 1) {
+                    if (orderId != null) {
+                        db.reference.child("chat").child(orderId).child("status").setValue("Completed")
+                    }
+                    dialog.dismiss()
+                    finish()
+                }
+            }
+        }
+
         dialog.setContentView(view)
         dialog.show()
     }

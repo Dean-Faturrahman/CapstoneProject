@@ -36,7 +36,7 @@
         android:layout_width="60dp"
         android:layout_height="16dp"
         android:fontFamily="@font/pmedium"
-        android:text="0.1"
+        android:text="1.0"
         android:textAlignment="center"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/textView8"

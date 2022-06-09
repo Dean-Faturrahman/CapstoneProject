@@ -67,6 +67,7 @@ class StudentChatFragment : Fragment() {
 
                 db.reference.child("chat").addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
+                        listChat.clear()
 
                         if (snapshot.childrenCount > 0) {
                             Log.e("CheckCount", snapshot.childrenCount.toString())

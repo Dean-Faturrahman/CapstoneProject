@@ -8,6 +8,7 @@ import android.os.Handler
 import android.os.Looper
 import android.view.WindowInsets
 import android.view.WindowManager
+import androidx.appcompat.app.AppCompatDelegate
 import com.dicoding.capstones.MainActivity
 import com.dicoding.capstones.R
 
@@ -15,6 +16,7 @@ class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         val delay = 2000L
         super.onCreate(savedInstanceState)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_splash_screen)
         Handler(Looper.getMainLooper()).postDelayed({
             val intent = Intent(this@SplashScreenActivity, MainActivity::class.java)

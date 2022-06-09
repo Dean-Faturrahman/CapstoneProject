@@ -3,10 +3,13 @@ package com.dicoding.capstones.ui.classlist
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dicoding.capstones.R
 import com.dicoding.capstones.adapter.ClassListAdapter
 import com.dicoding.capstones.data.ChatListModel
 import com.dicoding.capstones.databinding.ActivityClassListBinding
@@ -113,18 +116,14 @@ class ClassListActivity : AppCompatActivity() {
 
         listClassAdapter.setOnItemClickCallback(object : ClassListAdapter.OnItemClickCallback {
             override fun onItemClicked(data: ClassList?) {
-//                toChat()
-//                Log.e("Check Order", data?.classId.toString())
-//                Log.e("Check Order", sharedPref.getString(Const.PREF_USERID).toString())
                 classListViewModel.createOrder(
                     data?.classId,
                     sharedPref.getString(Const.PREF_USERID)
                 )
                 subject = data?.subjectName.toString()
+                Toast.makeText(this@ClassListActivity, "Berhasil order! Silahkan menuju menu chat", Toast.LENGTH_SHORT).show()
             }
         })
-
-
     }
 
     private fun showRecyclerList() {
@@ -140,19 +139,6 @@ class ClassListActivity : AppCompatActivity() {
 
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
-    }
-
-    private fun toChat() {
-//        finish()
-//        val intent = Intent(this, ChatFragment::class.java)
-//        startActivity(intent)
-
-//        val myFragment = ChatFragment();
-//        supportFragmentManager.beginTransaction().add(, myFragment)
-//
-
-//        navController.navigateUp()
-//        navController.navigate(R.id.nav_chat)
     }
 
     companion object {

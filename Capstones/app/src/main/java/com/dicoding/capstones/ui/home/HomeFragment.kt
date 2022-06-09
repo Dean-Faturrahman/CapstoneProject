@@ -28,7 +28,6 @@ import com.dicoding.capstones.ui.upgrade.FormUpgradeActivity
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 
-
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
@@ -70,7 +69,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        homeViewModel.rating.observe(viewLifecycleOwner){
+        homeViewModel.rating.observe(viewLifecycleOwner) {
             setRating(it)
         }
     }
@@ -93,11 +92,12 @@ class HomeFragment : Fragment() {
             )
         )
 
-//        listItemHomeAdapter.setOnItemClickCallback(object : ListItemAdapter.OnItemClickCallback {
-//            override fun onItemClicked(data: ItemHome?) {
-//
-//            }
-//        })
+        listItemSubjectAdapter.setOnItemClickCallback(object :
+            ListItemSubjectAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: ItemSubject?) {
+                toClass(data?.name)
+            }
+        })
 
         dialog.setContentView(view)
         dialog.show()
@@ -136,10 +136,10 @@ class HomeFragment : Fragment() {
             return listItem
         }
 
-    private fun setRating(rating : List<RatingDataItem>){
-        val listRating =ArrayList<RatingDataItem>()
+    private fun setRating(rating: List<RatingDataItem>) {
+        val listRating = ArrayList<RatingDataItem>()
 
-        for (i in rating){
+        for (i in rating) {
             val ratingUser = RatingDataItem(
                 i.userPhoto,
                 i.userName,

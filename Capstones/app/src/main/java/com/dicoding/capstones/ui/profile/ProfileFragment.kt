@@ -59,7 +59,7 @@ class ProfileFragment : Fragment() {
             if (yearNow < yearAge) {
                 age--
             }
-            binding.tvAge.text = age.toString() + getString(R.string.yearsOld)
+            binding.tvAge.text = age.toString() + " " + getString(R.string.yearsOld)
             sharedPref.put(Const.PREF_USERID, it[0].userId)
             binding.btnRole.text = it[0].userRole
         }

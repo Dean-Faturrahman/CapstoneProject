@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.capstones.adapter.ChatAdapter
 import com.dicoding.capstones.data.ChatListModel
@@ -14,6 +15,7 @@ import com.dicoding.capstones.databinding.FragmentTeacherChatBinding
 import com.dicoding.capstones.helper.Const
 import com.dicoding.capstones.helper.PrefHelper
 import com.dicoding.capstones.ui.chatroom.ChattingRoomActivity
+import com.dicoding.capstones.ui.search.SearchViewModel
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -29,6 +31,7 @@ class TeacherChatFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var sharedPref : PrefHelper
     private var lastMessage : String? = null
+    private val chatViewModel by viewModels<ChatViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,6 +54,13 @@ class TeacherChatFragment : Fragment() {
         val listChatAdapter = ChatAdapter(listChat)
         binding.rvListChat.adapter = listChatAdapter
 
+        chatViewModel.getProfileData(sharedPref.getString(Const.PREF_USERID))
+        chatViewModel.profile.observe(viewLifecycleOwner) {
+            if (it.first().userRole != "Teacher") {
+                binding.tvNotTeacher.visibility = View.VISIBLE
+            }
+        }
+
         listChatAdapter.setOnItemClickCallback(object : ChatAdapter.OnItemClickCallback {
             override fun onItemClicked(data: ChatListModel) {
                 val toRoomChat = Intent(requireActivity(), ChattingRoomActivity::class.java)
@@ -69,6 +79,7 @@ class TeacherChatFragment : Fragment() {
                 db.reference.child("chat").addListenerForSingleValueEvent(object :
                     ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
+                        listChat.clear()
 
                         if (snapshot.childrenCount > 0) {
                             Log.e("CheckCount", snapshot.childrenCount.toString())

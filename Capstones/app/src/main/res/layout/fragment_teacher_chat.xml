@@ -10,4 +10,12 @@
         android:layout_height="wrap_content"
         tools:listitem="@layout/item_chat" />
 
+    <TextView
+        android:id="@+id/tv_not_teacher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:text="Upgrade akunmu untuk menjadi pengajar!" />
+
 </FrameLayout>

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dicoding.capstones.data.ItemHome
 import com.dicoding.capstones.databinding.ItemListClassBinding
+import com.dicoding.capstones.network.ClassList
 import com.dicoding.capstones.network.SearchDataItem
 
 class SearchListAdapter (private val listClass: ArrayList<SearchDataItem>) : RecyclerView.Adapter<SearchListAdapter.ListViewHolder>(){
@@ -30,10 +31,14 @@ class SearchListAdapter (private val listClass: ArrayList<SearchDataItem>) : Rec
         holder.binding.tvTeacherName.text = name
         holder.binding.tvTeacherGender.text = gender
         holder.binding.tvTeacherDesc.text = subject
+
+        holder.binding.btnOrder.setOnClickListener {
+            onItemClickCallback.onItemClicked(listClass[holder.adapterPosition])
+        }
     }
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: ItemHome?)
+        fun onItemClicked(data: SearchDataItem?)
     }
 
     override fun getItemCount(): Int = listClass.size

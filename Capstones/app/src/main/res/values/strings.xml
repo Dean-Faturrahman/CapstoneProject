@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Capstones</string>
+    <string name="app_name">TeachNGo</string>
     <string name="title_menu_1">Welcome</string>
     <string name="desc_menu_1">Aplikasi ini menyediakan pengajar dari pelajaran yang kamu inginkan, selain itu kamu juga dapat berkomunikasi langsung dengan guru memalui fitur chat loh! Ayo tunggu apalagi daftarkan dirimu sekarang.</string>
     <string name="learn_now">Mulai Belajar</string>
