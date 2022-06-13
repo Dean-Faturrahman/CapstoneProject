@@ -62,13 +62,13 @@
         android:paddingHorizontal="10dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <ImageView
-            android:id="@+id/btn_add_image"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_gravity="center"
-            android:enabled="false"
-            android:src="@drawable/camera" />
+<!--        <ImageView-->
+<!--            android:id="@+id/btn_add_image"-->
+<!--            android:layout_width="25dp"-->
+<!--            android:layout_height="25dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:enabled="false"-->
+<!--            android:src="@drawable/camera" />-->
 
         <EditText
             android:id="@+id/messageEditText"

@@ -239,7 +239,7 @@ class RegisterActivity : AppCompatActivity() {
         val gen2 = ObjectAnimator.ofFloat(binding.radio2, View.ALPHA, 1f).setDuration(300)
         val txtnumber = ObjectAnimator.ofFloat(binding.txtNumber, View.ALPHA, 1f).setDuration(300)
         val number = ObjectAnimator.ofFloat(binding.inputNumber, View.ALPHA, 1f).setDuration(300)
-        val txtinters = ObjectAnimator.ofFloat(binding.txtInterest, View.ALPHA, 1f).setDuration(300)
+//        val txtinters = ObjectAnimator.ofFloat(binding.txtInterest, View.ALPHA, 1f).setDuration(300)
         val buttonlogin = ObjectAnimator.ofFloat(binding.button, View.ALPHA, 1f).setDuration(300)
         val txt4 = ObjectAnimator.ofFloat(binding.textView4, View.ALPHA, 1f).setDuration(300)
         val login = ObjectAnimator.ofFloat(binding.tvToLogin, View.ALPHA, 1f).setDuration(300)
@@ -251,7 +251,7 @@ class RegisterActivity : AppCompatActivity() {
 
         AnimatorSet().apply {
             playSequentially(img,title,stittle, txtname, name, txtemail, email, txtpass, pass, txtpassconf,
-                passconf, txtdate, date, txtgen, txtnumber, number, txtinters, together)
+                passconf, txtdate, date, txtgen, txtnumber, number, together)
             start()
         }
     }

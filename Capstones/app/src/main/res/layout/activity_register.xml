@@ -283,117 +283,117 @@
             app:layout_constraintTop_toBottomOf="@+id/txtNumber"
             android:alpha="0"/>
 
-        <TextView
-            android:id="@+id/txtInterest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/pmedium"
-            android:text="@string/peminatan"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/inputNumber"
-            app:layout_constraintTop_toBottomOf="@+id/inputNumber"
-            android:alpha="0"/>
+<!--        <TextView-->
+<!--            android:id="@+id/txtInterest"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:fontFamily="@font/pmedium"-->
+<!--            android:text="@string/peminatan"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="16sp"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/inputNumber"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/inputNumber"-->
+<!--            android:alpha="0"/>-->
 
-        <CheckBox
-            android:id="@+id/check_one"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/pregular"
-            android:text="@string/matematika"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/txtInterest"
-            app:layout_constraintTop_toBottomOf="@+id/txtInterest" />
+<!--        <CheckBox-->
+<!--            android:id="@+id/check_one"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/pregular"-->
+<!--            android:text="@string/matematika"-->
+<!--            android:textSize="14sp"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/txtInterest"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/txtInterest" />-->
 
-        <CheckBox
-            android:id="@+id/check_two"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/Biologi"
-            android:fontFamily="@font/pregular"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/check_one"
-            app:layout_constraintTop_toBottomOf="@+id/check_one"/>
+<!--        <CheckBox-->
+<!--            android:id="@+id/check_two"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/Biologi"-->
+<!--            android:fontFamily="@font/pregular"-->
+<!--            android:textSize="14sp"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/check_one"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/check_one"/>-->
 
-        <CheckBox
-            android:id="@+id/check_three"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/fisika"
-            android:fontFamily="@font/pregular"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/check_two"
-            app:layout_constraintTop_toBottomOf="@+id/check_two"/>
+<!--        <CheckBox-->
+<!--            android:id="@+id/check_three"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/fisika"-->
+<!--            android:fontFamily="@font/pregular"-->
+<!--            android:textSize="14sp"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/check_two"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/check_two"/>-->
 
-        <CheckBox
-            android:id="@+id/check_Four"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/kimia"
-            android:fontFamily="@font/pregular"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/check_three"
-            app:layout_constraintTop_toBottomOf="@+id/check_three"/>
+<!--        <CheckBox-->
+<!--            android:id="@+id/check_Four"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/kimia"-->
+<!--            android:fontFamily="@font/pregular"-->
+<!--            android:textSize="14sp"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/check_three"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/check_three"/>-->
 
-        <CheckBox
-            android:id="@+id/check_Five"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:fontFamily="@font/pregular"
-            android:text="@string/akuntan"
-            android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/check_one"
-            app:layout_constraintTop_toTopOf="@+id/check_one" />
+<!--        <CheckBox-->
+<!--            android:id="@+id/check_Five"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="32dp"-->
+<!--            android:fontFamily="@font/pregular"-->
+<!--            android:text="@string/akuntan"-->
+<!--            android:textSize="14sp"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/check_one"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/check_one" />-->
 
-        <CheckBox
-            android:id="@+id/check_six"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/pregular"
-            android:text="@string/inggris"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/check_Five"
-            app:layout_constraintTop_toBottomOf="@+id/check_Five" />
+<!--        <CheckBox-->
+<!--            android:id="@+id/check_six"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/pregular"-->
+<!--            android:text="@string/inggris"-->
+<!--            android:textSize="14sp"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/check_Five"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/check_Five" />-->
 
-        <CheckBox
-            android:id="@+id/check_seven"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/pregular"
-            android:text="@string/indo"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/check_six"
-            app:layout_constraintTop_toBottomOf="@+id/check_six" />
+<!--        <CheckBox-->
+<!--            android:id="@+id/check_seven"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/pregular"-->
+<!--            android:text="@string/indo"-->
+<!--            android:textSize="14sp"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/check_six"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/check_six" />-->
 
-        <CheckBox
-            android:id="@+id/check_eight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/pregular"
-            android:text="@string/seni"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/check_seven"
-            app:layout_constraintTop_toBottomOf="@+id/check_seven" />
+<!--        <CheckBox-->
+<!--            android:id="@+id/check_eight"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/pregular"-->
+<!--            android:text="@string/seni"-->
+<!--            android:textSize="14sp"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/check_seven"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/check_seven" />-->
 
         <Button
             android:id="@+id/button"
             android:layout_width="0dp"
             android:layout_height="45dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:alpha="0"
             android:background="@drawable/shape_button"
+            android:enabled="false"
             android:fontFamily="@font/pmedium"
             android:text="@string/btRegis"
             android:textSize="14dp"
-            android:enabled="false"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/check_Four"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/inputNumber" />
 
         <TextView
             android:id="@+id/textView4"

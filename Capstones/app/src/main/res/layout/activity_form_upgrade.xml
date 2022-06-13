@@ -51,13 +51,24 @@
     <TextView
         android:id="@+id/txtLink"
         android:layout_width="276dp"
-        android:layout_height="53dp"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/pmedium"
-        android:text="@string/txt_Link"
+        android:text="@string/txt_link"
         android:textColor="@color/title"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/txtPerhatian"
         app:layout_constraintTop_toBottomOf="@+id/txtPerhatian" />
+
+    <TextView
+        android:id="@+id/link"
+        android:layout_width="276dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pmedium"
+        android:text="@string/link"
+        android:textSize="12sp"
+        android:autoLink="web"
+        app:layout_constraintStart_toStartOf="@+id/txtPerhatian"
+        app:layout_constraintTop_toBottomOf="@+id/txtLink" />
 
     <TextView
         android:id="@+id/textView3"
@@ -69,7 +80,7 @@
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/txtLink"
-        app:layout_constraintTop_toBottomOf="@+id/txtLink" />
+        app:layout_constraintTop_toBottomOf="@+id/link" />
 
     <EditText
         android:id="@+id/inputNilai"
@@ -162,7 +173,7 @@
         android:background="@drawable/shape_edittext"
         android:drawablePadding="18dp"
         android:fontFamily="@font/pregular"
-        android:hint="Isi Awal Tahun Mengajar"
+        android:hint="Contoh: 3"
         android:inputType="text"
         android:paddingStart="16dp"
         android:paddingEnd="20dp"
